@@ -1,0 +1,800 @@
+Query 0
+NN(lsh): Item 97
+distanceLSH: 117968
+Nearest Neighbour: Item 97
+distanceTrue: 117968
+tLSH: 0.00524534
+tTrue: 0.048927
+==================================================== 
+Query 1
+NN(lsh): Item 22
+distanceLSH: 105813
+Nearest Neighbour: Item 97
+distanceTrue: 88054
+tLSH: 0.00784823
+tTrue: 0.0350911
+==================================================== 
+Query 2
+NN(lsh): Item 18
+distanceLSH: 107235
+Nearest Neighbour: Item 57
+distanceTrue: 73582
+tLSH: 0.0105602
+tTrue: 0.0436854
+==================================================== 
+Query 3
+NN(lsh): Item 97
+distanceLSH: 86488
+Nearest Neighbour: Item 97
+distanceTrue: 86488
+tLSH: 0.00845287
+tTrue: 0.0372615
+==================================================== 
+Query 4
+NN(lsh): Item 92
+distanceLSH: 100608
+Nearest Neighbour: Item 73
+distanceTrue: 89798
+tLSH: 0.012464
+tTrue: 0.0399755
+==================================================== 
+Query 5
+NN(lsh): Item 26
+distanceLSH: 173899
+Nearest Neighbour: Item 96
+distanceTrue: 124654
+tLSH: 0.00563507
+tTrue: 0.0436752
+==================================================== 
+Query 6
+NN(lsh): Item 81
+distanceLSH: 185277
+Nearest Neighbour: Item 97
+distanceTrue: 106638
+tLSH: 0.00445231
+tTrue: 0.0518091
+==================================================== 
+Query 7
+NN(lsh): Item 44
+distanceLSH: 68729
+Nearest Neighbour: Item 36
+distanceTrue: 64445
+tLSH: 0.0168749
+tTrue: 0.0548684
+==================================================== 
+Query 8
+NN(lsh): Item 58
+distanceLSH: 112254
+Nearest Neighbour: Item 73
+distanceTrue: 73422
+tLSH: 0.00594795
+tTrue: 0.0478385
+==================================================== 
+Query 9
+NN(lsh): Item 85
+distanceLSH: 92745
+Nearest Neighbour: Item 73
+distanceTrue: 89021
+tLSH: 0.0090157
+tTrue: 0.0506048
+==================================================== 
+Query 10
+NN(lsh): Item 97
+distanceLSH: 165378
+Nearest Neighbour: Item 96
+distanceTrue: 128471
+tLSH: 0.0162325
+tTrue: 0.0494545
+==================================================== 
+Query 11
+NN(lsh): Item 8
+distanceLSH: 74027
+Nearest Neighbour: Item 61
+distanceTrue: 58393
+tLSH: 0.00969149
+tTrue: 0.0482269
+==================================================== 
+Query 12
+NN(lsh): Item 24
+distanceLSH: 91319
+Nearest Neighbour: Item 24
+distanceTrue: 91319
+tLSH: 0.0113953
+tTrue: 0.0526216
+==================================================== 
+Query 13
+NN(lsh): Item 96
+distanceLSH: 137789
+Nearest Neighbour: Item 97
+distanceTrue: 119270
+tLSH: 0.0104715
+tTrue: 0.0504775
+==================================================== 
+Query 14
+NN(lsh): Item 69
+distanceLSH: 79942
+Nearest Neighbour: Item 69
+distanceTrue: 79942
+tLSH: 0.00769992
+tTrue: 0.0522395
+==================================================== 
+Query 15
+NN(lsh): Item 2
+distanceLSH: 68732
+Nearest Neighbour: Item 2
+distanceTrue: 68732
+tLSH: 0.00672893
+tTrue: 0.048321
+==================================================== 
+Query 16
+NN(lsh): Item 96
+distanceLSH: 81597
+Nearest Neighbour: Item 96
+distanceTrue: 81597
+tLSH: 0.0123472
+tTrue: 0.0421434
+==================================================== 
+Query 17
+NN(lsh): Item 25
+distanceLSH: 78006
+Nearest Neighbour: Item 25
+distanceTrue: 78006
+tLSH: 0.00699851
+tTrue: 0.0419888
+==================================================== 
+Query 18
+NN(lsh): Item 66
+distanceLSH: 98675
+Nearest Neighbour: Item 58
+distanceTrue: 93541
+tLSH: 0.0113104
+tTrue: 0.0416267
+==================================================== 
+Query 19
+NN(lsh): Item 97
+distanceLSH: 83569
+Nearest Neighbour: Item 96
+distanceTrue: 76992
+tLSH: 0.0123574
+tTrue: 0.0421824
+==================================================== 
+Query 20
+NN(lsh): Item 23
+distanceLSH: 122367
+Nearest Neighbour: Item 70
+distanceTrue: 79200
+tLSH: 0.00705435
+tTrue: 0.0402469
+==================================================== 
+Query 21
+NN(lsh): Item 74
+distanceLSH: 80640
+Nearest Neighbour: Item 85
+distanceTrue: 68603
+tLSH: 0.013109
+tTrue: 0.0422693
+==================================================== 
+Query 22
+NN(lsh): Item 31
+distanceLSH: 53660
+Nearest Neighbour: Item 31
+distanceTrue: 53660
+tLSH: 0.0133639
+tTrue: 0.0422703
+==================================================== 
+Query 23
+NN(lsh): Item 85
+distanceLSH: 134148
+Nearest Neighbour: Item 57
+distanceTrue: 91527
+tLSH: 0.0108001
+tTrue: 0.0412088
+==================================================== 
+Query 24
+NN(lsh): Item 57
+distanceLSH: 81588
+Nearest Neighbour: Item 74
+distanceTrue: 71076
+tLSH: 0.0123037
+tTrue: 0.0544019
+==================================================== 
+Query 25
+NN(lsh): Item 32
+distanceLSH: 122614
+Nearest Neighbour: Item 56
+distanceTrue: 101668
+tLSH: 0.0190444
+tTrue: 0.0561189
+==================================================== 
+Query 26
+NN(lsh): Item 60
+distanceLSH: 95283
+Nearest Neighbour: Item 59
+distanceTrue: 67681
+tLSH: 0.0122774
+tTrue: 0.0543079
+==================================================== 
+Query 27
+NN(lsh): Item 85
+distanceLSH: 80999
+Nearest Neighbour: Item 56
+distanceTrue: 71045
+tLSH: 0.011924
+tTrue: 0.0547259
+==================================================== 
+Query 28
+NN(lsh): Item 62
+distanceLSH: 89036
+Nearest Neighbour: Item 59
+distanceTrue: 82118
+tLSH: 0.0113313
+tTrue: 0.0541338
+==================================================== 
+Query 29
+NN(lsh): Item 2
+distanceLSH: 165917
+Nearest Neighbour: Item 12
+distanceTrue: 126907
+tLSH: 0.00796896
+tTrue: 0.0554807
+==================================================== 
+Query 30
+NN(lsh): Item 86
+distanceLSH: 88042
+Nearest Neighbour: Item 86
+distanceTrue: 88042
+tLSH: 0.0196733
+tTrue: 0.051983
+==================================================== 
+Query 31
+NN(lsh): Item 0
+distanceLSH: 153288
+Nearest Neighbour: Item 92
+distanceTrue: 115424
+tLSH: 0.00923649
+tTrue: 0.0525281
+==================================================== 
+Query 32
+NN(lsh): Item 32
+distanceLSH: 95222
+Nearest Neighbour: Item 50
+distanceTrue: 91775
+tLSH: 0.0115569
+tTrue: 0.0599593
+==================================================== 
+Query 33
+NN(lsh): Item 37
+distanceLSH: 204686
+Nearest Neighbour: Item 42
+distanceTrue: 187582
+tLSH: 0.0170526
+tTrue: 0.0579119
+==================================================== 
+Query 34
+NN(lsh): Item 13
+distanceLSH: 103009
+Nearest Neighbour: Item 21
+distanceTrue: 96130
+tLSH: 0.013145
+tTrue: 0.0622339
+==================================================== 
+Query 35
+NN(lsh): Item 83
+distanceLSH: 214783
+Nearest Neighbour: Item 94
+distanceTrue: 129382
+tLSH: 0.00838068
+tTrue: 0.0572991
+==================================================== 
+Query 36
+NN(lsh): Item 35
+distanceLSH: 163004
+Nearest Neighbour: Item 96
+distanceTrue: 117369
+tLSH: 0.0166098
+tTrue: 0.0566903
+==================================================== 
+Query 37
+NN(lsh): Item 76
+distanceLSH: 220179
+Nearest Neighbour: Item 35
+distanceTrue: 195389
+tLSH: 0.0101113
+tTrue: 0.0548987
+==================================================== 
+Query 38
+NN(lsh): Item 8
+distanceLSH: 205117
+Nearest Neighbour: Item 58
+distanceTrue: 162696
+tLSH: 0.0150485
+tTrue: 0.0553723
+==================================================== 
+Query 39
+NN(lsh): Item 69
+distanceLSH: 79554
+Nearest Neighbour: Item 69
+distanceTrue: 79554
+tLSH: 0.0128709
+tTrue: 0.0560469
+==================================================== 
+Query 40
+NN(lsh): Item 23
+distanceLSH: 116956
+Nearest Neighbour: Item 7
+distanceTrue: 107982
+tLSH: 0.0116123
+tTrue: 0.0537842
+==================================================== 
+Query 41
+NN(lsh): Item 81
+distanceLSH: 65711
+Nearest Neighbour: Item 99
+distanceTrue: 56654
+tLSH: 0.0124974
+tTrue: 0.0575873
+==================================================== 
+Query 42
+NN(lsh): Item 6
+distanceLSH: 138292
+Nearest Neighbour: Item 58
+distanceTrue: 78290
+tLSH: 0.0196735
+tTrue: 0.0591331
+==================================================== 
+Query 43
+NN(lsh): Item 61
+distanceLSH: 122432
+Nearest Neighbour: Item 85
+distanceTrue: 99087
+tLSH: 0.011022
+tTrue: 0.0551216
+==================================================== 
+Query 44
+NN(lsh): Item 83
+distanceLSH: 131708
+Nearest Neighbour: Item 94
+distanceTrue: 89859
+tLSH: 0.0159038
+tTrue: 0.0509279
+==================================================== 
+Query 45
+NN(lsh): Item 77
+distanceLSH: 111965
+Nearest Neighbour: Item 92
+distanceTrue: 84259
+tLSH: 0.0175924
+tTrue: 0.0505897
+==================================================== 
+Query 46
+NN(lsh): Item 98
+distanceLSH: 102471
+Nearest Neighbour: Item 48
+distanceTrue: 102332
+tLSH: 0.00909955
+tTrue: 0.047239
+==================================================== 
+Query 47
+NN(lsh): Item 97
+distanceLSH: 188940
+Nearest Neighbour: Item 96
+distanceTrue: 153251
+tLSH: 0.0137004
+tTrue: 0.0559812
+==================================================== 
+Query 48
+NN(lsh): Item 82
+distanceLSH: 178774
+Nearest Neighbour: Item 65
+distanceTrue: 138023
+tLSH: 0.015145
+tTrue: 0.0620109
+==================================================== 
+Query 49
+NN(lsh): Item 5
+distanceLSH: 104217
+Nearest Neighbour: Item 31
+distanceTrue: 59052
+tLSH: 0.0102638
+tTrue: 0.0607319
+==================================================== 
+Query 50
+NN(lsh): Item 92
+distanceLSH: 167722
+Nearest Neighbour: Item 89
+distanceTrue: 152701
+tLSH: 0.0225112
+tTrue: 0.0699756
+==================================================== 
+Query 51
+NN(lsh): Item 5
+distanceLSH: 117824
+Nearest Neighbour: Item 69
+distanceTrue: 102479
+tLSH: 0.0133134
+tTrue: 0.0651422
+==================================================== 
+Query 52
+NN(lsh): Item 78
+distanceLSH: 71903
+Nearest Neighbour: Item 57
+distanceTrue: 62696
+tLSH: 0.0226348
+tTrue: 0.061333
+==================================================== 
+Query 53
+NN(lsh): Item 92
+distanceLSH: 63267
+Nearest Neighbour: Item 92
+distanceTrue: 63267
+tLSH: 0.0262474
+tTrue: 0.0657332
+==================================================== 
+Query 54
+NN(lsh): Item 83
+distanceLSH: 370484
+Nearest Neighbour: Item 99
+distanceTrue: 50368
+tLSH: 0.00784795
+tTrue: 0.0584151
+==================================================== 
+Query 55
+NN(lsh): Item 35
+distanceLSH: 192264
+Nearest Neighbour: Item 81
+distanceTrue: 95429
+tLSH: 0.0192437
+tTrue: 0.0571146
+==================================================== 
+Query 56
+NN(lsh): Item 66
+distanceLSH: 67162
+Nearest Neighbour: Item 62
+distanceTrue: 57804
+tLSH: 0.0149608
+tTrue: 0.0641608
+==================================================== 
+Query 57
+NN(lsh): Item 94
+distanceLSH: 120212
+Nearest Neighbour: Item 97
+distanceTrue: 102313
+tLSH: 0.0142281
+tTrue: 0.0595143
+==================================================== 
+Query 58
+NN(lsh): Item 69
+distanceLSH: 199730
+Nearest Neighbour: Item 33
+distanceTrue: 109499
+tLSH: 0.0132381
+tTrue: 0.0680084
+==================================================== 
+Query 59
+NN(lsh): Item 80
+distanceLSH: 61112
+Nearest Neighbour: Item 98
+distanceTrue: 50344
+tLSH: 0.0176328
+tTrue: 0.0707615
+==================================================== 
+Query 60
+NN(lsh): Item 79
+distanceLSH: 112150
+Nearest Neighbour: Item 30
+distanceTrue: 98541
+tLSH: 0.0186685
+tTrue: 0.06617
+==================================================== 
+Query 61
+NN(lsh): Item 74
+distanceLSH: 153674
+Nearest Neighbour: Item 12
+distanceTrue: 92001
+tLSH: 0.015824
+tTrue: 0.0632303
+==================================================== 
+Query 62
+NN(lsh): Item 89
+distanceLSH: 166170
+Nearest Neighbour: Item 72
+distanceTrue: 135711
+tLSH: 0.0165747
+tTrue: 0.0673355
+==================================================== 
+Query 63
+NN(lsh): Item 75
+distanceLSH: 111886
+Nearest Neighbour: Item 69
+distanceTrue: 95949
+tLSH: 0.0235331
+tTrue: 0.0656405
+==================================================== 
+Query 64
+NN(lsh): Item 30
+distanceLSH: 180468
+Nearest Neighbour: Item 21
+distanceTrue: 177707
+tLSH: 0.0228056
+tTrue: 0.0609008
+==================================================== 
+Query 65
+NN(lsh): Item 81
+distanceLSH: 94701
+Nearest Neighbour: Item 45
+distanceTrue: 74047
+tLSH: 0.0147791
+tTrue: 0.0681308
+==================================================== 
+Query 66
+NN(lsh): Item 7
+distanceLSH: 196552
+Nearest Neighbour: Item 33
+distanceTrue: 176697
+tLSH: 0.0196571
+tTrue: 0.0640044
+==================================================== 
+Query 67
+NN(lsh): Item 93
+distanceLSH: 202920
+Nearest Neighbour: Item 45
+distanceTrue: 110204
+tLSH: 0.016705
+tTrue: 0.0594046
+==================================================== 
+Query 68
+NN(lsh): Item 2
+distanceLSH: 100268
+Nearest Neighbour: Item 4
+distanceTrue: 72482
+tLSH: 0.0122675
+tTrue: 0.0635859
+==================================================== 
+Query 69
+NN(lsh): Item 76
+distanceLSH: 276660
+Nearest Neighbour: Item 31
+distanceTrue: 107396
+tLSH: 0.00970741
+tTrue: 0.073825
+==================================================== 
+Query 70
+NN(lsh): Item 69
+distanceLSH: 125202
+Nearest Neighbour: Item 13
+distanceTrue: 121932
+tLSH: 0.0161679
+tTrue: 0.0635419
+==================================================== 
+Query 71
+NN(lsh): Item 23
+distanceLSH: 160527
+Nearest Neighbour: Item 70
+distanceTrue: 153732
+tLSH: 0.02071
+tTrue: 0.0685405
+==================================================== 
+Query 72
+NN(lsh): Item 90
+distanceLSH: 190939
+Nearest Neighbour: Item 51
+distanceTrue: 132045
+tLSH: 0.0129213
+tTrue: 0.0671065
+==================================================== 
+Query 73
+NN(lsh): Item 21
+distanceLSH: 168410
+Nearest Neighbour: Item 69
+distanceTrue: 153403
+tLSH: 0.0176286
+tTrue: 0.0766978
+==================================================== 
+Query 74
+NN(lsh): Item 79
+distanceLSH: 72799
+Nearest Neighbour: Item 59
+distanceTrue: 63467
+tLSH: 0.0199754
+tTrue: 0.0807203
+==================================================== 
+Query 75
+NN(lsh): Item 69
+distanceLSH: 167141
+Nearest Neighbour: Item 85
+distanceTrue: 153152
+tLSH: 0.0129001
+tTrue: 0.080538
+==================================================== 
+Query 76
+NN(lsh): Item 7
+distanceLSH: 370158
+Nearest Neighbour: Item 38
+distanceTrue: 134483
+tLSH: 0.0221215
+tTrue: 0.0926834
+==================================================== 
+Query 77
+NN(lsh): Item 11
+distanceLSH: 190502
+Nearest Neighbour: Item 23
+distanceTrue: 134265
+tLSH: 0.0160672
+tTrue: 0.0791119
+==================================================== 
+Query 78
+NN(lsh): Item 91
+distanceLSH: 105938
+Nearest Neighbour: Item 57
+distanceTrue: 89656
+tLSH: 0.0276774
+tTrue: 0.076416
+==================================================== 
+Query 79
+NN(lsh): Item 44
+distanceLSH: 76975
+Nearest Neighbour: Item 98
+distanceTrue: 64076
+tLSH: 0.0345303
+tTrue: 0.079533
+==================================================== 
+Query 80
+NN(lsh): Item 37
+distanceLSH: 172770
+Nearest Neighbour: Item 41
+distanceTrue: 111891
+tLSH: 0.022591
+tTrue: 0.0863868
+==================================================== 
+Query 81
+NN(lsh): Item 70
+distanceLSH: 121717
+Nearest Neighbour: Item 74
+distanceTrue: 111308
+tLSH: 0.0204176
+tTrue: 0.0837665
+==================================================== 
+Query 82
+NN(lsh): Item 82
+distanceLSH: 125118
+Nearest Neighbour: Item 51
+distanceTrue: 75017
+tLSH: 0.026782
+tTrue: 0.0929458
+==================================================== 
+Query 83
+NN(lsh): Item 85
+distanceLSH: 115715
+Nearest Neighbour: Item 60
+distanceTrue: 93121
+tLSH: 0.0461183
+tTrue: 0.0890155
+==================================================== 
+Query 84
+NN(lsh): Item 69
+distanceLSH: 98247
+Nearest Neighbour: Item 91
+distanceTrue: 89735
+tLSH: 0.0225218
+tTrue: 0.0791218
+==================================================== 
+Query 85
+NN(lsh): Item 66
+distanceLSH: 289487
+Nearest Neighbour: Item 63
+distanceTrue: 229134
+tLSH: 0.0206814
+tTrue: 0.0855443
+==================================================== 
+Query 86
+NN(lsh): Item 68
+distanceLSH: 209480
+Nearest Neighbour: Item 35
+distanceTrue: 154935
+tLSH: 0.0174503
+tTrue: 0.0735126
+==================================================== 
+Query 87
+NN(lsh): Item 95
+distanceLSH: 232692
+Nearest Neighbour: Item 35
+distanceTrue: 186450
+tLSH: 0.0199977
+tTrue: 0.0785943
+==================================================== 
+Query 88
+NN(lsh): Item 81
+distanceLSH: 134079
+Nearest Neighbour: Item 49
+distanceTrue: 112666
+tLSH: 0.0247139
+tTrue: 0.0770314
+==================================================== 
+Query 89
+NN(lsh): Item 68
+distanceLSH: 326585
+Nearest Neighbour: Item 46
+distanceTrue: 50379
+tLSH: 0.0177367
+tTrue: 0.0780904
+==================================================== 
+Query 90
+NN(lsh): Item 66
+distanceLSH: 40260
+Nearest Neighbour: Item 66
+distanceTrue: 40260
+tLSH: 0.0349555
+tTrue: 0.0796716
+==================================================== 
+Query 91
+NN(lsh): Item 90
+distanceLSH: 216706
+Nearest Neighbour: Item 11
+distanceTrue: 178797
+tLSH: 0.0135053
+tTrue: 0.0819342
+==================================================== 
+Query 92
+NN(lsh): Item 8
+distanceLSH: 184017
+Nearest Neighbour: Item 1
+distanceTrue: 166401
+tLSH: 0.0181082
+tTrue: 0.0762537
+==================================================== 
+Query 93
+NN(lsh): Item 69
+distanceLSH: 103925
+Nearest Neighbour: Item 69
+distanceTrue: 103925
+tLSH: 0.038818
+tTrue: 0.0777841
+==================================================== 
+Query 94
+NN(lsh): Item 5
+distanceLSH: 191531
+Nearest Neighbour: Item 55
+distanceTrue: 163939
+tLSH: 0.0218618
+tTrue: 0.0749346
+==================================================== 
+Query 95
+NN(lsh): Item 96
+distanceLSH: 201188
+Nearest Neighbour: Item 83
+distanceTrue: 195813
+tLSH: 0.0216019
+tTrue: 0.0825756
+==================================================== 
+Query 96
+NN(lsh): Item 15
+distanceLSH: 153381
+Nearest Neighbour: Item 20
+distanceTrue: 126672
+tLSH: 0.0214724
+tTrue: 0.0766467
+==================================================== 
+Query 97
+NN(lsh): Item 5
+distanceLSH: 159562
+Nearest Neighbour: Item 69
+distanceTrue: 135063
+tLSH: 0.019364
+tTrue: 0.0840684
+==================================================== 
+Query 98
+NN(lsh): Item 57
+distanceLSH: 124484
+Nearest Neighbour: Item 70
+distanceTrue: 99705
+tLSH: 0.0279619
+tTrue: 0.102123
+==================================================== 
+Query 99
+NN(lsh): Item 69
+distanceLSH: 131323
+Nearest Neighbour: Item 69
+distanceTrue: 131323
+tLSH: 0.0315325
+tTrue: 0.0990857
+==================================================== 
