@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -std=c99
-SOURCES = lsh.c
-EXECUTABLE = lsh
+SOURCES = lsh_mnist.c
+EXECUTABLE = lsh_mnist
 
 all: $(EXECUTABLE)
 

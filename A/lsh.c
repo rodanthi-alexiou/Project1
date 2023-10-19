@@ -17,7 +17,7 @@
 
 
 
-#define DIMENSION 10 // The dimension of the vectors
+#define DIMENSION 784  // The dimension of the vectors
 #define NUM_HASH_FUNCTIONS 5 // Number of hash functions
 #define NUM_BUCKETS 1000 // Number of buckets in the hash table
 #define NUM_VECTORS 1000
