@@ -30,3 +30,7 @@ void move_input_to_line(int line); /* Moves the inFile pointer to a specific lin
 void get_query(int query_line); /* Returns a specific query from the query File */
 
 long long unsigned int get_number_of_queries(void); /* Finds out how many lines the query file has */
+
+// long long unsigned get_mnist_lines(); /* Finds out how many images (lines) the file has */
+
+// unsigned char** read_mnist_images(std::ifstream& file); /* Reads the images from the file */

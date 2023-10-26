@@ -479,11 +479,12 @@ void Euclidian_LSH_File(int L,int k){
 
 	/* Calls the appropriate functions to perform LSH queries */
 
+
 	string str;
 
 	qFile >> str;
 
-	cout << str << endl;
+	// cout << str << endl;
 
 	double radius;
 
@@ -508,6 +509,8 @@ void Euclidian_LSH_File(int L,int k){
 	else{
 
 		cout << "in2" << endl;
+
+		// unsigned char** im = read_mnist_images();
 
 		queries = get_number_of_queries();
 

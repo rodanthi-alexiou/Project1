@@ -2,6 +2,12 @@
 #include "modules/CosineHashing.h"
 #include "modules/EuclidianHashing.h"
 
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+
 using namespace std;
 
 ifstream inFile; /* Input File */
@@ -16,18 +22,79 @@ int L=5; /* Number of Hash Tables  */
 
 bool metric = 0; /* Metric to be used 0: Euclidian 1: Cosine */
 
+// a struct to hold the data of the file
+struct fileData {
+	int magic_number;
+	int number_of_images;
+	int n_rows;
+	int n_cols;
+	int image_size;
+	unsigned char** images;
+};
+
+
+int number_of_images;
+int image_size; 
+
+unsigned char** read_mnist_images(std::ifstream& file) {
+    auto reverseInt = [](int i) {
+        unsigned char c1, c2, c3, c4;
+        c1 = i & 255, c2 = (i >> 8) & 255, c3 = (i >> 16) & 255, c4 = (i >> 24) & 255;
+        return ((int)c1 << 24) + ((int)c2 << 16) + ((int)c3 << 8) + c4;
+    };
+
+    typedef unsigned char uchar;
+
+    if(file.is_open()) {
+        int magic_number = 0, n_rows = 0, n_cols = 0;
+
+
+        file.read((char *)&magic_number, sizeof(magic_number));
+        magic_number = reverseInt(magic_number);
+
+        cout << magic_number << endl;
+
+        if(magic_number != 2051) throw runtime_error("Invalid MNIST image file!");
+
+        file.read((char *)&number_of_images, sizeof(number_of_images)), number_of_images = reverseInt(number_of_images);
+        file.read((char *)&n_rows, sizeof(n_rows)), n_rows = reverseInt(n_rows);
+        file.read((char *)&n_cols, sizeof(n_cols)), n_cols = reverseInt(n_cols);
+
+        cout << "Number of rows: " << n_rows << endl;
+        cout << "Number of cols: " << n_cols << endl;
+
+        image_size = n_rows * n_cols;
+
+        cout << "Image Size: " << image_size << endl;
+
+        uchar** _dataset = new uchar*[number_of_images];
+        for(int i = 0; i < number_of_images; i++) {
+            _dataset[i] = new uchar[image_size];
+            file.read((char *)_dataset[i], image_size);
+        }
+        return _dataset;
+    } else {
+        throw runtime_error("Cannot open file!");
+    }
+}
+
+
+
+
 int main(int argc, char *argv[])
 {
 
-	int input = user_input_handling(argc,argv); /* Handle User Input */
+	// int input = user_input_handling(argc,argv); /* Handle User Input */
 
-	if( input == -1 ){ 							/* Check if user input was OK */
+	// if( input == -1 ){ 							/* Check if user input was OK */
 
-		cout << "The program will now exit." << endl;
+	// 	cout << "The program will now exit." << endl;
 
-		return -1;
+	// 	return -1;
 
-	}
+	// }
+
+	int mentric = 0;
 
 	/* If the input was OK, proceed to find if a metric is specified in the file */
 
@@ -43,7 +110,16 @@ int main(int argc, char *argv[])
 
 	/* Initializion of Hash Functions and Hash table */
 
-	long long unsigned int lines = get_number_of_lines();
+	// long long unsigned int lines = get_number_of_lines();
+
+
+	std::ifstream file("train-images.idx3-ubyte", std::ios::binary);
+
+    unsigned char** images = read_mnist_images(file);
+
+ 	cout << "Number of lines: " << number_of_images << endl;
+
+	int lines = number_of_images;
 
 	if( metric == 0 ){
 
@@ -55,7 +131,7 @@ int main(int argc, char *argv[])
 
 		cout << "-----------------------------" << endl;
 
-		for(int i=0; i < 100 ;i++){
+		for(int i=0; i < lines ;i++){
 
 			Euclidian_Hash_from_file(i,L,k);
 			

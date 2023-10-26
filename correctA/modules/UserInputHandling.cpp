@@ -2,6 +2,9 @@
 
 using namespace std;
 
+typedef unsigned char uchar;
+
+
 int user_input_handling(int argc, char *argv[]){ 
 
 	int file_to_output = 0;
@@ -28,7 +31,9 @@ int user_input_handling(int argc, char *argv[]){
 			}
 			else{
 
-				inFile.open(argv[cur_arg+1]);
+				ifstream inFile(argv[cur_arg+1], ios::binary);
+
+				//inFile.open(argv[cur_arg+1]);
 
 				input_given = 1;
 
@@ -52,7 +57,9 @@ int user_input_handling(int argc, char *argv[]){
 			}
 			else{
 
-				qFile.open(argv[cur_arg+1]);
+				ifstream qFile(argv[cur_arg+1], ios::binary);
+
+				//qFile.open(argv[cur_arg+1]);
 
 				query_given = 1;
 
@@ -148,7 +155,17 @@ int user_input_handling(int argc, char *argv[]){
 
 		cin >> str;
 
-		inFile.open(str);
+		// inFile.open(str, ios::binary);
+
+		// ifstream inFile(str,  ios::binary);
+
+		std::ifstream inFile(str, std::ios::binary);
+
+		// unsigned char** images = read_mnist_images(inFile);
+
+		//inFile.open(str, ios::binary);
+
+
 
 		if(!inFile){
 
@@ -166,7 +183,9 @@ int user_input_handling(int argc, char *argv[]){
 
 		cin >> str;
 
-		qFile.open(str);
+		ifstream qFile(str, ios::binary);
+
+		//qFile.open(str, ios::binary);
 
 		if(!qFile){
 
@@ -199,6 +218,9 @@ int user_input_handling(int argc, char *argv[]){
 	return 0;
 }
 
+
+
+
 long long unsigned int get_number_of_lines(void){
 
 	/* First find out how many lines the dataset has */
@@ -215,7 +237,38 @@ long long unsigned int get_number_of_lines(void){
 	inFile.seekg(0,ios::beg);
 
 	return lines;
+
+
 }
+
+// // get number of images (lines)
+// long long unsigned get_mnist_lines() {
+//     auto reverseInt = [](int i) {
+//         unsigned char c1, c2, c3, c4;
+//         c1 = i & 255, c2 = (i >> 8) & 255, c3 = (i >> 16) & 255, c4 = (i >> 24) & 255;
+//         return ((int)c1 << 24) + ((int)c2 << 16) + ((int)c3 << 8) + c4;
+//     };
+
+//     typedef unsigned char uchar;
+
+
+//     if(inFile.is_open()) {
+//         int magic_number = 0, n_rows = 0, n_cols = 0, number_of_images = 0;
+
+
+//                 inFile.read((char *)&magic_number, sizeof(magic_number));
+//                 magic_number = reverseInt(magic_number);
+//                 if(magic_number != 2051) throw runtime_error("Invalid MNIST image file!");
+
+//         inFile.read((char *)&number_of_images, sizeof(number_of_images)), number_of_images = reverseInt(number_of_images);
+
+
+//     return number_of_images;
+//     } else {
+//         throw runtime_error("Cannot open file!");
+//     }
+// }
+
 
 long unsigned int get_dim_of_data(void){
 
