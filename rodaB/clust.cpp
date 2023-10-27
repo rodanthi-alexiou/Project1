@@ -298,11 +298,13 @@ int main() {
     // Assign data points to the nearest centroids using the Exact Panas Algorithm
     std::vector<int> assignments = assignToNearestCentroids(data, initial_centroids);
 
+    // Assign data points to the nearest centroids using the LSH Algorithm
+
 
     // After you've performed K-Means++ initialization and assignments
     std::vector<Cluster> clusters(K); // Initialize clusters
 
-    //int maxIterations = 10; // Set the maximum number of iterations
+
 
     for (int i = 0; i < data.number_of_images; ++i) {
         int clusterIndex = assignments[i]; // The assigned cluster index for data point i
@@ -311,26 +313,6 @@ int main() {
 
     // Record the time taken for clustering (you can use <chrono> for this)
     auto startTime = std::chrono::high_resolution_clock::now();
-
-    // for (int iteration = 0; iteration < maxIterations; ++iteration) {
-    //     // Update the centroids using the MacQueen method
-    //     std::vector<unsigned char*> updatedCentroids = updateCentroids(data, assignments, K);
-
-    //     // Reassign data points to the updated centroids
-    //     assignments = assignToNearestCentroids(data, updatedCentroids);
-
-    //     // Clear the points in each cluster
-    //     for (int k = 0; k < K; ++k) {
-    //         clusters[k].points.clear();
-    //     }
-
-    //     // Update clusters with data point assignments
-    //     for (int i = 0; i < data.number_of_images; ++i) {
-    //         int clusterIndex = assignments[i];
-    //         clusters[clusterIndex].points.push_back(data.images[i]);
-    //     }
-    // }
-
     auto endTime = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> clusteringDuration = endTime - startTime;
 
