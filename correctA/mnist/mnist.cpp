@@ -84,9 +84,9 @@ long long int modulo(long long int a, long long int b){
 
 
 
-long long unsigned int euclidian_hash_query(unsigned char* query_line, int amp_func, int k, fileData& qdata); /* Returns the position in the hash table of the query vector */
+long long unsigned int euclidian_hash_query(unsigned char* query_line, int amp_func, int k, fileData& qdata, const std::vector<double>& t); /* Returns the position in the hash table of the query vector */
 
-long long unsigned int euclidian_hash_query(int query_line,int amp_func,int k, fileData& qdata){
+long long unsigned int euclidian_hash_query(int query_line,int amp_func,int k, fileData& qdata, const std::vector<double>& t){
 	
 	string string_to_hash;
 	long long int sum;
@@ -101,16 +101,14 @@ long long unsigned int euclidian_hash_query(int query_line,int amp_func,int k, f
 
 			for(int i = 0 ; i < qdata.image_size ; i++ ){ /* In order to calculate the Inner product of the hash vecor and the data vector we have to multiply all of their coordinates */
 
-                x = (double) qdata.images[query_line][i]; /* Get the first int from the file */
+                x = (double)qdata.images[query_line][i]; /* Get the first int from the file */
                 sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
 			}
 
-            cout << "sum: " << sum << endl;
 
 			sum = sum + t[h];
-            cout << t[h] << endl;
+            // cout << t[h] << endl;
 			sum = floor( sum / (double) w );
-            cout << "sum2 " << sum << endl;
 			string_to_hash =  string_to_hash + to_string(sum);
 
 		}
@@ -142,7 +140,7 @@ long long int calcute_euclidian_distance(int input_line, int query_line, fileDat
 		x = (double)fdata.images[input_line][i];
         y = (double)qdata.images[query_line][i];
 		dist = dist + (x-y)*(x-y);
-		// cout << "x: " << x << " y: " << y << "dist: " << dist << endl;
+		cout << "x: " << x << " y: " << y << "dist: " << dist << endl;
 
 	}
 
@@ -440,16 +438,12 @@ int main(int argc, char *argv[]) {
 
 	auto start1 = std::chrono::high_resolution_clock::now();
 
-    int query_line = 0;
+    int query_line = 550;
 
 
 	for( amp_func = 0;amp_func < L; amp_func++ ){ /* We have to look in each hash table for the query vector */
 
-        cout << "amp_func: " << amp_func << endl;
-
-		pos_in_hash_table = euclidian_hash_query(query_line,amp_func,k, qData);
-
-        cout << "pos in hash table: " << pos_in_hash_table << endl;
+		pos_in_hash_table = euclidian_hash_query(query_line,amp_func,k, qData, t);
 
 
 		// cout << "pos in hash table: " << pos_in_hash_table << endl;
@@ -457,6 +451,7 @@ int main(int argc, char *argv[]) {
 		for (auto i = Euclidian_Hash_Tables[amp_func][pos_in_hash_table].begin(); i != Euclidian_Hash_Tables[amp_func][pos_in_hash_table].end(); ++i){
 
 			dist = calcute_euclidian_distance(*i, query_line, data, qData); /* Calculate euclidian distance between the two vectors */ 
+            
 
 			if( dist < min_dist ){ /* If the distance we found is less, update min_dist and min_line */
 
