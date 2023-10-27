@@ -26,12 +26,6 @@ using namespace std;
 
 typedef unsigned int uint;
 
-typedef struct {
-    uint id;
-    uint size;
-    uint *elements;
-} Cluster;
-
 ifstream file; /* Input File */
 
 struct fileData {
@@ -42,6 +36,60 @@ struct fileData {
 	int image_size;
 	unsigned char** images; 
 };
+
+
+// Structure to represent a cluster
+struct Cluster {
+    std::vector<unsigned char*> points;  // Data points in the cluster
+    unsigned char* centroid;           // Centroid of the cluster
+};
+
+unsigned char* computeCentroid(const Cluster& cluster, int imageSize) {
+    unsigned char* centroid = new unsigned char[imageSize];
+    std::fill(centroid, centroid + imageSize, 0);
+
+    if (!cluster.points.empty()) {
+        for (const unsigned char* point : cluster.points) {
+            for (int i = 0; i < imageSize; ++i) {
+                centroid[i] += point[i];
+            }
+        }
+
+        for (int i = 0; i < imageSize; ++i) {
+            centroid[i] /= cluster.points.size();
+        }
+    }
+
+    return centroid;
+}
+
+
+// Function to print the clusters
+void printClusters(const std::vector<Cluster>& clusters, double clusteringTime, const fileData& data) {
+    int K = clusters.size();
+    
+    for (int k = 0; k < K; ++k) {
+        const Cluster& cluster = clusters[k];
+        int clusterSize = cluster.points.size();
+        unsigned char* centroid = computeCentroid(cluster, data.image_size);
+
+        // Print Cluster-k information
+        std::cout << "CLUSTER-" << (k + 1) << " {size: " << clusterSize << ", centroid: [";
+        for (int i = 0; i < data.image_size; ++i) {
+            std::cout << static_cast<int>(centroid[i]);
+            if (i < data.image_size - 1) {
+                std::cout << ", ";
+            }
+        }
+        std::cout << "}" << std::endl;
+
+        // Don't forget to free the centroid memory
+        delete[] centroid;
+    }
+
+    // Print clustering time
+    std::cout << "clustering_time: " << clusteringTime << " seconds" << std::endl;
+}
 
 unsigned char** read_mnist_images(std::ifstream& file, fileData& data) {
     auto reverseInt = [](int i) {
@@ -150,6 +198,79 @@ std::vector<unsigned char*> kmeans_plusplus_init(const fileData& data, int K) {
     return centroids;
 }
 
+// Function to update centroids using the MacQueen method
+std::vector<unsigned char*> updateCentroids(const fileData& data, const std::vector<int>& assignments, int K) {
+    int numDataPoints = data.number_of_images;
+    int image_size = data.image_size;
+
+    std::vector<unsigned char*> newCentroids(K, nullptr);
+
+    // Initialize new centroids with zeros
+    for (int k = 0; k < K; ++k) {
+        newCentroids[k] = new unsigned char[image_size];
+        std::fill(newCentroids[k], newCentroids[k] + image_size, 0);
+    }
+
+    std::vector<int> clusterSizes(K, 0);
+
+    // Calculate the sums for each cluster
+    for (int i = 0; i < numDataPoints; ++i) {
+        int clusterIndex = assignments[i];
+        clusterSizes[clusterIndex]++;
+        for (int j = 0; j < image_size; ++j) {
+            newCentroids[clusterIndex][j] += data.images[i][j];
+        }
+    }
+
+    // Divide by cluster sizes to compute the means
+    for (int k = 0; k < K; ++k) {
+        for (int j = 0; j < image_size; ++j) {
+            if (clusterSizes[k] > 0) {
+                newCentroids[k][j] /= clusterSizes[k];
+            }
+        }
+    }
+
+    return newCentroids;
+}
+
+
+// Function to calculate the Euclidean distance between two data points
+double euclideanDistance(const unsigned char* point1, const unsigned char* point2, int size) {
+    double distance = 0;
+    for (int i = 0; i < size; ++i) {
+        int diff = point1[i] - point2[i];
+        distance += diff * diff;
+    }
+    return std::sqrt(distance);
+}
+
+// Assignment Step (Lloyds Algorithm)
+std::vector<int> assignToNearestCentroids(const fileData& data, const std::vector<unsigned char*>& centroids) {
+    int numDataPoints = data.number_of_images;
+    int numCentroids = centroids.size();
+
+    std::vector<int> assignments(numDataPoints);
+
+    for (int i = 0; i < numDataPoints; ++i) {
+        double minDistance = std::numeric_limits<double>::max();
+        int nearestCentroid = -1;
+
+        for (int j = 0; j < numCentroids; ++j) {
+            double distance = euclideanDistance(data.images[i], centroids[j], data.image_size);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestCentroid = j;
+                }
+        }
+
+        assignments[i] = nearestCentroid;
+    }
+
+    return assignments;
+}
+
 
 
 int main() {
@@ -174,6 +295,52 @@ int main() {
     // Perform K-Means++ initialization
     std::vector<unsigned char*> initial_centroids = kmeans_plusplus_init(data, K);
 
+    // Assign data points to the nearest centroids using the Exact Panas Algorithm
+    std::vector<int> assignments = assignToNearestCentroids(data, initial_centroids);
+
+
+    // After you've performed K-Means++ initialization and assignments
+    std::vector<Cluster> clusters(K); // Initialize clusters
+
+    //int maxIterations = 10; // Set the maximum number of iterations
+
+    for (int i = 0; i < data.number_of_images; ++i) {
+        int clusterIndex = assignments[i]; // The assigned cluster index for data point i
+        clusters[clusterIndex].points.push_back(data.images[i]); // Add the data point to the cluster
+    }
+
+    // Record the time taken for clustering (you can use <chrono> for this)
+    auto startTime = std::chrono::high_resolution_clock::now();
+
+    // for (int iteration = 0; iteration < maxIterations; ++iteration) {
+    //     // Update the centroids using the MacQueen method
+    //     std::vector<unsigned char*> updatedCentroids = updateCentroids(data, assignments, K);
+
+    //     // Reassign data points to the updated centroids
+    //     assignments = assignToNearestCentroids(data, updatedCentroids);
+
+    //     // Clear the points in each cluster
+    //     for (int k = 0; k < K; ++k) {
+    //         clusters[k].points.clear();
+    //     }
+
+    //     // Update clusters with data point assignments
+    //     for (int i = 0; i < data.number_of_images; ++i) {
+    //         int clusterIndex = assignments[i];
+    //         clusters[clusterIndex].points.push_back(data.images[i]);
+    //     }
+    // }
+
+    auto endTime = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> clusteringDuration = endTime - startTime;
+
+    // Print size of each cluster
+    for (int i = 0; i < K; i++) {
+        cout << "Cluster " << i << " size: " << clusters[i].points.size() << endl;
+    }
+
+    // Print the clusters and clustering time
+    //printClusters(clusters, clusteringDuration.count(), data);
 
 }
 
