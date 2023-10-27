@@ -49,6 +49,7 @@ void HashFunctions_Euclidian_Initialization(int k , int L){
 	Euclidian_Amplified_Functions.resize( L , vector<int>(k));
 
 	srand(time(0));
+	
 
 	int func_num;
 

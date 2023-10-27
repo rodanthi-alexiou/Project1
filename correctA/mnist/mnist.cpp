@@ -140,7 +140,7 @@ long long int calcute_euclidian_distance(int input_line, int query_line, fileDat
 		x = (double)fdata.images[input_line][i];
         y = (double)qdata.images[query_line][i];
 		dist = dist + (x-y)*(x-y);
-		cout << "x: " << x << " y: " << y << "dist: " << dist << endl;
+		// cout << "x: " << x << " y: " << y << "dist: " << dist << endl;
 
 	}
 
@@ -148,6 +148,46 @@ long long int calcute_euclidian_distance(int input_line, int query_line, fileDat
 
 	return dist;
 }
+
+void Euclidian_put_hash(int line, int L, int k, fileData& data, const std::vector<double>& t); /* Puts a vector to all of the hash tables */
+
+void Euclidian_put_hash(int index, int L, int k, fileData& data, const std::vector<double>& t){
+
+        int n = data.number_of_images;
+        int dim = data.image_size;
+        string string_to_hash;
+        long long int sum;
+        double x;
+        string str;
+        long long unsigned int pos;
+
+        for (int amp_func = 0; amp_func < L; amp_func++){
+            string_to_hash = "";
+
+            for(int h = 0 ; h < k ; h++ ){ /* We have to hash each vector with each Hash Function in the amp_func Amplified Function */
+                sum = 0;
+
+                for(int i=0; i < dim; i++){
+                    x = (double) data.images[index][i];
+                    sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
+                }
+
+                sum = sum + t[h];
+			    sum = floor( sum / (double) w );
+			    string_to_hash.append(to_string(sum));
+
+            }
+
+            pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
+		    pos = modulo(pos,n/2);
+		    //cout << "Pushing " << index << " to [" << amp_func << "][" << pos << "]" << endl; 
+		    Euclidian_Hash_Tables[amp_func][pos].push_back(index);
+
+
+        }
+} /* Puts a vector to all of the hash tables */
+
+
 
 
 unsigned char** read_mnist_images(std::ifstream& file, fileData& data) {
@@ -244,15 +284,7 @@ int main(int argc, char *argv[]) {
     cout << "Number of cols: " << data.n_cols << endl;
     cout << "Image Size: " << data.image_size << endl;
 
-    cout << "First image: " << endl;
-    // for(int i = 0; i < data.n_rows; i++) {
-    //     for(int j = 0; j < data.n_cols; j++) {
-    //         cout << (int)images[0][i * data.n_cols + j] << " ";
-    //     }
-    //     cout << endl;
-    // }
 
-    // cout << (int)images[0][0] << endl;
 
     // for( int i=0; i< data.image_size; i++){
     //     cout << (int)images[0][i] << " ";
@@ -355,38 +387,24 @@ int main(int argc, char *argv[]) {
 
     for(int index=0; index < data.number_of_images; index++){
 
-        string string_to_hash;
-        long long int sum;
-        double x;
-        string str;
-        long long unsigned int pos;
-
-        for (int amp_func = 0; amp_func < L; amp_func++){
-            string_to_hash = "";
-
-            for(int h = 0 ; h < k ; h++ ){ /* We have to hash each vector with each Hash Function in the amp_func Amplified Function */
-                sum = 0;
-
-                for(int i=0; i < dim; i++){
-                    x = (double) images[index][i];
-                    sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
-                }
-
-                sum = sum + t[h];
-			    sum = floor( sum / (double) w );
-			    string_to_hash.append(to_string(sum));
-
-            }
-
-            pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
-		    pos = modulo(pos,n/2);
-		    //cout << "Pushing " << index << " to [" << amp_func << "][" << pos << "]" << endl; 
-		    Euclidian_Hash_Tables[amp_func][pos].push_back(index);
-
-
-        }
+        Euclidian_put_hash(index,L,k,data,t);
 
     }
+
+    cout << "I just filled the Hash Tables" << endl;
+
+	int max = n/2;
+
+	for( int amp_func=0; amp_func< L; amp_func++ ){
+
+		for(int pos=0; pos< max; pos++){
+	
+			Euclidian_Hash_Tables[amp_func][pos].erase(remove(Euclidian_Hash_Tables[amp_func][pos].begin(), Euclidian_Hash_Tables[amp_func][pos].end(), 0), Euclidian_Hash_Tables[amp_func][pos].end());
+
+		}
+	}
+
+	Euclidian_put_hash(0,L,k,data,t);
 
 
     ///////////////////////////////////////////////////////////////
@@ -416,16 +434,10 @@ int main(int argc, char *argv[]) {
     cout << "Number of cols: " << qData.n_cols << endl;
     cout << "Image Size: " << qData.image_size << endl;
 
-    // get nearest neighbor of first query image
-
-    // for( int i=0; i< qData.image_size; i++){
-    //     cout << (int)qImages[0][i] << " ";
-    // }
-    // cout << endl;
-
-    // cout << (int)qImages[0][0] << endl;
 
     //////////////////////////////////////////
+
+    for(int query_line=0; query_line<10; query_line++){
 
 
     int amp_func,pos_in_hash_table;
@@ -438,7 +450,7 @@ int main(int argc, char *argv[]) {
 
 	auto start1 = std::chrono::high_resolution_clock::now();
 
-    int query_line = 550;
+    //int query_line = 550;
 
 
 	for( amp_func = 0;amp_func < L; amp_func++ ){ /* We have to look in each hash table for the query vector */
@@ -479,6 +491,8 @@ int main(int argc, char *argv[]) {
 	cout << "NN(lsh): Item " << min_line << endl;
 	cout << "distanceLSH: " << min_dist << endl;
 
+
+    }
 
     
 
