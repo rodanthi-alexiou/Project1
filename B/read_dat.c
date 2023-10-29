@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 int main() {
-    FILE *file = fopen("mnist_dataset.dat", "rb");
+    FILE *file = fopen("train-images.idx3-ubyte", "rb");
 
     if (file == NULL) {
         perror("Error opening file");
@@ -32,13 +32,13 @@ int main() {
     printf("Number of Columns: %u\n", num_columns);
 
     // Index of the image you want to retrieve (0-based)
-    int image_index = 1;  // Change this index to get a different image
+    int image_index = 3;  // Change this index to get a different image
 
     // Seek to the start of the specified image in the file
     fseek(file, 16 + (image_index * 784), SEEK_SET);
 
     // Read the pixel data for the image
-    uint8_t image[784];
+    uint8_t image[784]; // 28 x 28 = 784
     fread(image, sizeof(uint8_t), 784, file);
 
     // Close the file
