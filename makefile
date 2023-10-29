@@ -1,8 +1,9 @@
 CC = g++
+modules = LSHImplementation.cpp
 args = -o
 
-mnist:
-	$(CC) clust.cpp $(args) clust
+clust:
+	$(CC) clust.cpp $(modules) $(args) clust
 
 clean:
 	rm -rf clust

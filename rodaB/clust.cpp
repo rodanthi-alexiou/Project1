@@ -22,20 +22,14 @@
 #define DBL_MAX 1.79769e+308
 
 
+#include "LSHImplementation.h"
+
+
 using namespace std;
 
 typedef unsigned int uint;
 
 ifstream file; /* Input File */
-
-struct fileData {
-	int magic_number;
-	int number_of_images;
-	int n_rows;
-	int n_cols;
-	int image_size;
-	unsigned char** images; 
-};
 
 
 // Structure to represent a cluster
@@ -91,56 +85,6 @@ void printClusters(const std::vector<Cluster>& clusters, double clusteringTime, 
     std::cout << "clustering_time: " << clusteringTime << " seconds" << std::endl;
 }
 
-unsigned char** read_mnist_images(std::ifstream& file, fileData& data) {
-    auto reverseInt = [](int i) {
-        unsigned char c1, c2, c3, c4;
-        c1 = i & 255, c2 = (i >> 8) & 255, c3 = (i >> 16) & 255, c4 = (i >> 24) & 255;
-        return ((int)c1 << 24) + ((int)c2 << 16) + ((int)c3 << 8) + c4;
-    };
-
-    typedef unsigned char uchar;
-
-    if (file.is_open()) {
-        int magic_number = 0, n_rows = 0, n_cols = 0;
-        int number_of_images, image_size;
-
-        file.read((char*)&magic_number, sizeof(magic_number));
-        magic_number = reverseInt(magic_number);
-
-        if (magic_number != 2051) throw std::runtime_error("Invalid MNIST image file!");
-
-        file.read((char*)&number_of_images, sizeof(number_of_images));
-        number_of_images = reverseInt(number_of_images);
-        file.read((char*)&n_rows, sizeof(n_rows));
-        n_rows = reverseInt(n_rows);
-        file.read((char*)&n_cols, sizeof(n_cols));
-        n_cols = reverseInt(n_cols);
-
-        image_size = n_rows * n_cols;
-
-        data.magic_number = magic_number;
-        data.number_of_images = number_of_images;
-        data.n_rows = n_rows;
-        data.n_cols = n_cols;
-        data.image_size = image_size;
-        data.images = new unsigned char*[data.number_of_images];
-
-        uchar** _dataset = new uchar*[number_of_images];
-        for(int i = 0; i < number_of_images; i++) {
-            _dataset[i] = new uchar[image_size];
-            file.read((char *)_dataset[i], image_size);
-        }
-
-        for (int i = 0; i < data.number_of_images; i++) {
-            data.images[i] = new unsigned char[data.image_size];
-            std::memcpy(data.images[i], _dataset[i], data.image_size);
-        }
-
-        return _dataset;
-    } else {
-        throw runtime_error("Cannot open file!");
-    }
-}
 
 
 // K-Means++ Initialization
@@ -252,6 +196,8 @@ std::vector<int> assignToNearestCentroids(const fileData& data, const std::vecto
 
     std::vector<int> assignments(numDataPoints);
 
+    cout << "numDataPoints: " << numDataPoints << endl;
+
     for (int i = 0; i < numDataPoints; ++i) {
         double minDistance = std::numeric_limits<double>::max();
         int nearestCentroid = -1;
@@ -273,14 +219,75 @@ std::vector<int> assignToNearestCentroids(const fileData& data, const std::vecto
 
 
 
+// Assignment Step (LSH Algorithm)
+//Function to assign a query point to its nearest centroid
+
+int assignToNearestCentroidLSH(LSHImplementation& lsh, fileData& data, int L, int k, vector<double>& t, vector<unsigned char*>& centroids, int queryImage) {
+    int nearestCentroidIndex = -1;
+    long long unsigned int minDistance = numeric_limits<long long unsigned int>::max();
+
+    // Calculate the hash value for the query image
+    long long unsigned int queryHash = lsh.euclidian_hash_query(queryImage, lsh.L, lsh.k, data, lsh.t);
+
+    cout << queryHash << endl;
+
+    // Compare the query hash to the hash values of centroids
+    for (int i = 0; i < centroids.size(); ++i) {
+        long long unsigned int centroidHash = lsh.euclidian_hash_centroid(centroids[i], lsh.L, lsh.k, data, lsh.t);
+        long long unsigned int distance = (queryHash - centroidHash) * (queryHash - centroidHash);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearestCentroidIndex = i;
+        }
+    }
+
+    return nearestCentroidIndex;
+}
+
+
+void updateCentroidsMacQueen(const fileData& data, const std::vector<int>& assignments, int K, std::vector<unsigned char*>& new_centroids) {
+    std::vector<int> cluster_sizes(K, 0);
+
+    for (int i = 0; i < data.number_of_images; ++i) {
+        int cluster = assignments[i];
+        cluster_sizes[cluster]++;
+        if (new_centroids[cluster] == nullptr) {
+            new_centroids[cluster] = new unsigned char[data.image_size];
+        }
+
+        for (int j = 0; j < data.image_size; ++j) {
+            new_centroids[cluster][j] += data.images[i][j];
+        }
+    }
+
+    for (int cluster = 0; cluster < K; ++cluster) {
+        if (cluster_sizes[cluster] > 0) {
+            for (int j = 0; j < data.image_size; ++j) {
+                new_centroids[cluster][j] /= cluster_sizes[cluster];
+            }
+        }
+    }
+}
+
+
+
+
+
+
 int main() {
+
+    int algo = 1; // 0 for LSH, 1 for Lloyd's
+
     std::ifstream file("train-images.idx3-ubyte", std::ios::binary);
     
     fileData data = {
         0,0,0,0,0,nullptr  
     };
 
-    unsigned char** images = read_mnist_images(file, data);
+    LSHImplementation lsh(5, 4, 400);
+
+    unsigned char** images = lsh.read_mnist_images(file, data);
 
 
     cout << "Magic number: " << data.magic_number << endl;
@@ -295,10 +302,35 @@ int main() {
     // Perform K-Means++ initialization
     std::vector<unsigned char*> initial_centroids = kmeans_plusplus_init(data, K);
 
-    // Assign data points to the nearest centroids using the Exact Panas Algorithm
-    std::vector<int> assignments = assignToNearestCentroids(data, initial_centroids);
+    std::vector<int> assignments;
 
-    // Assign data points to the nearest centroids using the LSH Algorithm
+    if(algo == 0){
+
+        int dim = data.image_size; // Dimension of the data
+        vector<double> t(lsh.k);
+
+        lsh.initializeLSH(lsh.L, data.number_of_images, lsh.k, dim, lsh.w);
+
+        // Initialize the hash tables with the centroids
+        for (int i = 0; i < initial_centroids.size(); ++i) {
+            lsh.insertCentroidIntoLSH(i, initial_centroids.size(), lsh.L, lsh.k, t, initial_centroids);
+        }
+
+        lsh.cleanupHashTables(lsh.L, data, data.number_of_images);
+
+
+        for (int i = 0; i < data.number_of_images; ++i) {
+            unsigned char* query_line = lsh.getImageLine(data, i);
+            int min_line = lsh.FindNearestNeighborCentroid(query_line, lsh.L, lsh.k, data, t);
+            assignments.push_back(min_line);
+        }
+
+
+    }
+    else if(algo == 1){
+        assignments = assignToNearestCentroids(data, initial_centroids);
+    }
+
 
 
     // After you've performed K-Means++ initialization and assignments
@@ -311,18 +343,15 @@ int main() {
         clusters[clusterIndex].points.push_back(data.images[i]); // Add the data point to the cluster
     }
 
-    // Record the time taken for clustering (you can use <chrono> for this)
-    auto startTime = std::chrono::high_resolution_clock::now();
-    auto endTime = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> clusteringDuration = endTime - startTime;
 
     // Print size of each cluster
     for (int i = 0; i < K; i++) {
         cout << "Cluster " << i << " size: " << clusters[i].points.size() << endl;
     }
 
-    // Print the clusters and clustering time
-    //printClusters(clusters, clusteringDuration.count(), data);
+
+
+    
 
 }
 

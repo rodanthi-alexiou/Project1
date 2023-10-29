@@ -27,8 +27,51 @@
 using namespace std;
 
 
+    std::vector<std::vector<int>> LSHImplementation::Euclidian_Amplified_Functions;
+    std::vector<std::vector<std::vector<long long unsigned int>>> LSHImplementation::Euclidian_Hash_Tables;
+    
+    std::vector<std::vector<double>> LSHImplementation::v;
+    std::vector<double> LSHImplementation::t;
+    int LSHImplementation::w;
+    int LSHImplementation::k;
+    int LSHImplementation::L;
 
-double normal_distribution_generator(void){
+
+
+    const std::vector<std::vector<std::vector<long long unsigned int>>>& LSHImplementation::getEuclidianHashTables() const {
+        return Euclidian_Hash_Tables;
+    }
+    const std::vector<std::vector<int>>& LSHImplementation::getEuclidianAmplifiedFunctions() {
+        return Euclidian_Amplified_Functions;
+    }
+
+    int LSHImplementation::getAmplifiedFunction(int j, int k) {
+        return Euclidian_Amplified_Functions[j][k];
+    }
+
+    LSHImplementation::LSHImplementation(int L, int k, int w) {
+        this->L = L;
+        this->k = k;
+        this->w = w;
+    }
+
+    int LSHImplementation::getL() {
+        return L;
+    }
+
+    int LSHImplementation::getK() {
+        return k;
+    }
+
+    int LSHImplementation::getW() {
+        return w;
+    }
+
+//
+
+
+
+double LSHImplementation::normal_distribution_generator(void){
 
 	/* Based on https://en.cppreference.com/w/cpp/numeric/random/normal_distribution */
 
@@ -45,7 +88,7 @@ double normal_distribution_generator(void){
 
 // long long int modulo(long long int a, long long int b); /* Modulo between a and b, supports negative numers */
 
-long long int modulo(long long int a, long long int b){
+long long int LSHImplementation::modulo(long long int a, long long int b){
 
     /* Modulo between a and b, supports negative numers */
 
@@ -58,7 +101,7 @@ long long int modulo(long long int a, long long int b){
 
 // long long unsigned int euclidian_hash_query(unsigned char* query_line, int amp_func, int k, fileData& qdata, const std::vector<double>& t); /* Returns the position in the hash table of the query vector */
 
-long long unsigned int euclidian_hash_query(int query_line,int amp_func,int k, fileData& qdata, const std::vector<double>& t){
+long long unsigned int LSHImplementation::euclidian_hash_query(int query_line,int amp_func,int k, fileData& qdata, const std::vector<double>& t){
 	
 	string string_to_hash;
 	long long int sum;
@@ -75,11 +118,13 @@ long long unsigned int euclidian_hash_query(int query_line,int amp_func,int k, f
 
                 x = (double)qdata.images[query_line][i]; /* Get the first int from the file */
                 sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
+
+
 			}
 
 
 			sum = sum + t[h];
-            // cout << t[h] << endl;
+            //cout << t[h] << endl;
 			sum = floor( sum / (double) w );
 			string_to_hash =  string_to_hash + to_string(sum);
 
@@ -97,9 +142,40 @@ long long unsigned int euclidian_hash_query(int query_line,int amp_func,int k, f
 }
 
 
+// For Clustering 
+long long unsigned int LSHImplementation::euclidian_hash_centroid(unsigned char* query_line, int amp_func, int k, fileData& data,  vector<double>& t) {
+    string string_to_hash;
+    long long int sum;
+    double x;
+    long long unsigned int pos;
+
+    string_to_hash = "";
+
+    for (int h = 0; h < k; h++) {
+        sum = 0;
+
+        for (int i = 0; i < data.image_size; i++) {
+            x = (double)query_line[i];
+            sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
+        }
+
+        sum = sum + t[h];
+        sum = floor(sum / (double)w);
+        string_to_hash = string_to_hash + to_string(sum);
+    }
+
+    int n = data.number_of_images;
+    pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
+    pos = modulo(pos, n / 2);
+
+    return pos;
+}
+
+
+
 // long long int calcute_euclidian_distance(int input_line, int query_line, fileData& fdata, fileData& qdata); /* Returns the euclidian distance between two vectors */
 
-long long int calcute_euclidian_distance(int input_line, int query_line, fileData& fdata, fileData& qdata){
+long long int LSHImplementation::calcute_euclidian_distance(int input_line, int query_line, fileData& fdata, fileData& qdata){
 
 	/* Now lets calcute the inner product of the two vectors and the norm of each one*/
 
@@ -121,9 +197,8 @@ long long int calcute_euclidian_distance(int input_line, int query_line, fileDat
 	return dist;
 }
 
-void Euclidian_put_hash(int line, int L, int k, fileData& data, const std::vector<double>& t); /* Puts a vector to all of the hash tables */
 
-void Euclidian_put_hash(int index, int L, int k, fileData& data, const std::vector<double>& t){
+void LSHImplementation::Euclidian_put_hash(int index, int L, int k, fileData& data, const std::vector<double>& t){
 
         int n = data.number_of_images;
         int dim = data.image_size;
@@ -162,10 +237,45 @@ void Euclidian_put_hash(int index, int L, int k, fileData& data, const std::vect
         }
 } /* Puts a vector to all of the hash tables */
 
+void LSHImplementation::insertCentroidIntoLSH(int index, int number_centroids, int L, int k, const std::vector<double>& t, const std::vector<unsigned char*>& centroid) {
+    int n = number_centroids;
+    int dim = centroid.size();
+    string string_to_hash;
+    long long int sum;
+    double x;
+    string str;
+    long long unsigned int pos;
+
+    for (int amp_func = 0; amp_func < L; amp_func++) {
+        string_to_hash = "";
+
+        for (int h = 0; h < k; h++) {
+            sum = 0;
+
+        for (int i = 0; i < dim; i++) {
+            x = (double)centroid[index][i]; // Use the centroid data at the given 'index'
+            sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
+        }
+
+
+            sum = sum + t[h];
+            sum = floor(sum / (double)w);
+            string_to_hash.append(to_string(sum));
+        }
+
+        pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
+        pos = modulo(pos, n / 2);
+        Euclidian_Hash_Tables[amp_func][pos].push_back(index);
+    }
+
+
+}
 
 
 
-unsigned char** read_mnist_images(std::ifstream& file, fileData& data) {
+
+
+unsigned char** LSHImplementation::read_mnist_images(std::ifstream& file, fileData& data) {
     auto reverseInt = [](int i) {
         unsigned char c1, c2, c3, c4;
         c1 = i & 255, c2 = (i >> 8) & 255, c3 = (i >> 16) & 255, c4 = (i >> 24) & 255;
@@ -216,7 +326,7 @@ unsigned char** read_mnist_images(std::ifstream& file, fileData& data) {
     }
 }
 
-unsigned char* getImageLine(const fileData& data, int imageIndex) {
+unsigned char* LSHImplementation::getImageLine(const fileData& data, int imageIndex) {
     if (imageIndex >= 0 && imageIndex < data.number_of_images) {
         return data.images[imageIndex];
     } else {
@@ -230,7 +340,7 @@ unsigned char* getImageLine(const fileData& data, int imageIndex) {
 
 
 // Function to initialize vectors and hash functions
-void initializeVectors(int k, int dim) {
+void LSHImplementation::initializeVectors(int k, int dim) {
     v.resize(k, vector<double>(dim));
 
     default_random_engine generator;
@@ -245,7 +355,7 @@ void initializeVectors(int k, int dim) {
 }
 
 // Function to initialize Amplified Hash Functions
-void initializeAmplifiedFunctions(int L, int k) {
+void LSHImplementation::initializeAmplifiedFunctions(int L, int k) {
     Euclidian_Amplified_Functions.resize(L, vector<int>(k));
 
     srand(time(0));
@@ -266,7 +376,7 @@ void initializeAmplifiedFunctions(int L, int k) {
 }
 
 // Function to initialize t for each hash function
-void initializeT(int k, int w) {
+void LSHImplementation::initializeT(int k, int w) {
     t.clear();
     uniform_real_distribution<float> distribution(0.0, static_cast<float>(w));
 
@@ -278,7 +388,7 @@ void initializeT(int k, int w) {
     }
 }
 
-void cleanupHashTables(int L, fileData& data, int n) {
+void LSHImplementation::cleanupHashTables(int L, fileData& data, int n) {
     int max = n / 2;
 
     for (int amp_func = 0; amp_func < L; amp_func++) {
@@ -293,7 +403,7 @@ void cleanupHashTables(int L, fileData& data, int n) {
     Euclidian_put_hash(0, L, k, data, t);
 }
 
-void initializeLSH(int L, int n, int k, int dim, int w) {
+void LSHImplementation::initializeLSH(int L, int n, int k, int dim, int w) {
     // Initialize the Hash Tables
     Euclidian_Hash_Tables.resize(L, vector<vector<long long unsigned int>>(n / 2, vector<long long unsigned int>(1000)));
 
@@ -308,7 +418,7 @@ void initializeLSH(int L, int n, int k, int dim, int w) {
 }
 
 
-int FindNearestNeighbor(int query_line, int L, int k,  fileData& data,  fileData& qData,  std::vector<double>& t) {
+int LSHImplementation::FindNearestNeighbor(int query_line, int L, int k,  fileData& data,  fileData& qData,  std::vector<double>& t) {
     int amp_func, pos_in_hash_table;
     long long unsigned int dist, min_dist = 2147483646;
     short int time_to_break = 3 * L;
@@ -335,4 +445,75 @@ int FindNearestNeighbor(int query_line, int L, int k,  fileData& data,  fileData
     }
 
     return min_line;
+}
+
+int LSHImplementation::FindNearestNeighborCentroid(unsigned char* query_line, int L, int k, fileData& data, std::vector<double>& t) {
+    int amp_func, pos_in_hash_table;
+    long long unsigned int dist, min_dist = 2147483646;
+    short int time_to_break = 3 * L;
+    long long unsigned int min_line = 0;
+
+    for (amp_func = 0; amp_func < L; ++amp_func) {
+        pos_in_hash_table = euclidian_hash_centroid((unsigned char*)query_line, amp_func, k, data, t);
+
+        for (const auto& dataPoint : Euclidian_Hash_Tables[amp_func][pos_in_hash_table]) {
+            long long unsigned int dist = 0;
+            for (int i = 0; i < data.image_size; i++) {
+                dist += (long long unsigned int)query_line[i] * (long long unsigned int)data.images[dataPoint][i];
+            }
+
+            if (dist < min_dist) {
+                min_line = dataPoint;
+                min_dist = dist;
+            }
+
+            time_to_break--;
+
+            if (time_to_break <= 0)
+                break;
+        }
+
+        time_to_break = 3 * L;
+    }
+
+    return min_line;
+}
+
+void LSHImplementation::Euclidian_Full_Search_NN(int query_line, fileData& data, fileData& qdata){
+
+	int n = data.number_of_images;
+	long long unsigned int min_line=0,min_dist=BIG_INT ,dist;
+
+	for(long long unsigned int i=0;i< n;i++){
+
+		dist = LSHImplementation::calcute_euclidian_distance(i,query_line, data, qdata);
+
+		if(dist < min_dist){
+			min_line = i;
+			min_dist = dist;
+		}
+
+	}
+
+	cout << "Nearest Neighbour: Item " << min_line << endl;
+	cout << "distanceTrue: " << min_dist << endl;
+
+}
+
+void LSHImplementation::Euclidian_Full_Search_Range(int query_line, fileData& data, fileData& qdata, double radius){
+
+	int n = data.number_of_images;
+	cout << "R-Near Neighbours:" << endl;
+	long long unsigned int dist;
+
+	for(long long unsigned int i=0;i< n;i++){
+
+		dist = LSHImplementation::calcute_euclidian_distance(i,query_line, data, qdata);
+
+		if(dist < radius){
+			cout << "Item " << i << endl;
+		}
+
+	}
+
 }

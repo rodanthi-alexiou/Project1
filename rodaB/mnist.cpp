@@ -32,10 +32,12 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
+    LSHImplementation lsh(5, 4, 400);
+
 
 	std::ifstream file("train-images.idx3-ubyte", std::ios::binary);
     fileData data = { 0,0,0,0,0,nullptr };
-    unsigned char** images = read_mnist_images(file, data);
+    unsigned char** images = lsh.read_mnist_images(file, data);
 
 
     cout << "Magic number: " << data.magic_number << endl;
@@ -51,26 +53,26 @@ int main(int argc, char *argv[]) {
 
     int n = data.number_of_images; 
     int dim = data.image_size;
-    int w = 4000;
+
 
     // initialize t
-    vector<double> t(k);
+    vector<double> t(lsh.k);
 
     // Initialize LSH components
-    initializeLSH(L, n, k, dim, w);
+    lsh.initializeLSH(lsh.L, n, lsh.k, dim, lsh.w);
 
     //////////////////////////////////////////////
 
     for(int index=0; index < data.number_of_images; index++){
 
 
-        Euclidian_put_hash(index,L,k,data,t);
+        lsh.Euclidian_put_hash(index,lsh.L,lsh.k,data,lsh.t);
 
     }
 
     
 
-    cleanupHashTables(L, data, n);
+    lsh.cleanupHashTables(lsh.L, data, n);
 
     ///////////////////////////////////////////////////////////////
 
@@ -90,7 +92,7 @@ int main(int argc, char *argv[]) {
     };
 
     // read query file
-    unsigned char** qImages = read_mnist_images(qFile, qData);
+    unsigned char** qImages = lsh.read_mnist_images(qFile, qData);
 
     cout << "Magic number: " << qData.magic_number << endl;
     cout << "Number of images: " << qData.number_of_images << endl;
@@ -103,16 +105,22 @@ int main(int argc, char *argv[]) {
 
     for(int query_line=0; query_line<10; query_line++){
 
+        auto start1 = std::chrono::high_resolution_clock::now();
 
-        int min_line = FindNearestNeighbor(query_line, L, k, data, qData, t);
+        int min_line = lsh.FindNearestNeighbor(query_line, lsh.L, lsh.k, data, qData, t);
 
         auto finish1 = std::chrono::high_resolution_clock::now();
-
+        std::chrono::duration<double> elapsed1 = finish1 - start1;
 
         cout << "Query " << query_line << endl;
         cout << "NN(lsh): Item " << min_line << endl;
-        // cout << "distanceLSH: " << min_dist << endl;
 
+        // Calculate the true nearest neighbor and distance
+        lsh.Euclidian_Full_Search_NN(query_line, data, qData);
+
+        cout << "tLSH: " << elapsed1.count() << endl;
+
+        cout << "-------------------------------------" << endl;
 
     }
 
