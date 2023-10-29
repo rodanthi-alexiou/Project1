@@ -26,123 +26,89 @@
 
 using namespace std;
 
+std::vector<std::vector<int>> LSHImplementation::Euclidian_Amplified_Functions;
+std::vector<std::vector<std::vector<long long unsigned int>>> LSHImplementation::Euclidian_Hash_Tables;
 
-    std::vector<std::vector<int>> LSHImplementation::Euclidian_Amplified_Functions;
-    std::vector<std::vector<std::vector<long long unsigned int>>> LSHImplementation::Euclidian_Hash_Tables;
-    
-    std::vector<std::vector<double>> LSHImplementation::v;
-    std::vector<double> LSHImplementation::t;
-    int LSHImplementation::w;
-    int LSHImplementation::k;
-    int LSHImplementation::L;
+std::vector<std::vector<double>> LSHImplementation::v;
+std::vector<double> LSHImplementation::t;
+int LSHImplementation::w;
+int LSHImplementation::k;
+int LSHImplementation::L;
 
+const std::vector<std::vector<std::vector<long long unsigned int>>>& LSHImplementation::getEuclidianHashTables() const {
+    return Euclidian_Hash_Tables;
+}
+const std::vector<std::vector<int>>& LSHImplementation::getEuclidianAmplifiedFunctions() {
+    return Euclidian_Amplified_Functions;
+}
 
+int LSHImplementation::getAmplifiedFunction(int j, int k) {
+    return Euclidian_Amplified_Functions[j][k];
+}
 
-    const std::vector<std::vector<std::vector<long long unsigned int>>>& LSHImplementation::getEuclidianHashTables() const {
-        return Euclidian_Hash_Tables;
-    }
-    const std::vector<std::vector<int>>& LSHImplementation::getEuclidianAmplifiedFunctions() {
-        return Euclidian_Amplified_Functions;
-    }
+LSHImplementation::LSHImplementation(int L, int k, int w) {
+    this->L = L;
+    this->k = k;
+    this->w = w;
+}
 
-    int LSHImplementation::getAmplifiedFunction(int j, int k) {
-        return Euclidian_Amplified_Functions[j][k];
-    }
+int LSHImplementation::getL() {
+    return L;
+}
 
-    LSHImplementation::LSHImplementation(int L, int k, int w) {
-        this->L = L;
-        this->k = k;
-        this->w = w;
-    }
+int LSHImplementation::getK() {
+    return k;
+}
 
-    int LSHImplementation::getL() {
-        return L;
-    }
+int LSHImplementation::getW() {
+    return w;
+}
 
-    int LSHImplementation::getK() {
-        return k;
-    }
-
-    int LSHImplementation::getW() {
-        return w;
-    }
-
-//
-
-
-
+// Συνάρτηση για παραγωγή τυχαίων αριθμών από κανονική κατανομή
 double LSHImplementation::normal_distribution_generator(void){
-
-	/* Based on https://en.cppreference.com/w/cpp/numeric/random/normal_distribution */
-
-	random_device rd{};
+    random_device rd{};
     mt19937 gen{rd()};
-
-	normal_distribution<float> d{0,1};
-
-	map<int, int> hist{};
-
-	return round(d(gen));
-
+    normal_distribution<float> d{0,1};
+    map<int, int> hist{};
+    return round(d(gen));
 }
 
-// long long int modulo(long long int a, long long int b); /* Modulo between a and b, supports negative numers */
-
+// Συνάρτηση για υπολογισμό του υπολοίπου
 long long int LSHImplementation::modulo(long long int a, long long int b){
-
-    /* Modulo between a and b, supports negative numers */
-
-	return (a % b + b) %b;
-
+    return (a % b + b) % b;
 }
 
-
-
-
-// long long unsigned int euclidian_hash_query(unsigned char* query_line, int amp_func, int k, fileData& qdata, const std::vector<double>& t); /* Returns the position in the hash table of the query vector */
-
+// Συνάρτηση για το hash των διανυσμάτων της διάνυσμα των ερωτήσεων
 long long unsigned int LSHImplementation::euclidian_hash_query(int query_line,int amp_func,int k, fileData& qdata, const std::vector<double>& t){
-	
-	string string_to_hash;
-	long long int sum;
-	double x;
-	long long unsigned int pos;
+    string string_to_hash;
+    long long int sum;
+    double x;
+    long long unsigned int pos;
 
-		string_to_hash = "";
+    string_to_hash = "";
 
-		for(int h = 0 ; h < k ; h++ ){ /* We have to hash each vector with each Hash Function in the amp_func Amplified Function */
+    for(int h = 0 ; h < k ; h++ ){ // Πρέπει να κατανείμουμε το κάθε διάνυσμα με κάθε Hash Function στις amp_func αναπαραστάσεις του
+    
+        sum = 0;
 
-			sum = 0;
+        for(int i = 0 ; i < qdata.image_size ; i++ ){ // Για να υπολογίσουμε το εσωτερικό γινόμενο του διανύσματος hash με το διάνυσμα δεδομένων πρέπει να πολλαπλασιάσουμε όλες τις συντεταγμένες τους
+            x = (double)qdata.images[query_line][i]; // Πάρε το πρώτο int από το αρχείο
+            sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
+        }
 
-			for(int i = 0 ; i < qdata.image_size ; i++ ){ /* In order to calculate the Inner product of the hash vecor and the data vector we have to multiply all of their coordinates */
+        sum = sum + t[h];
+        sum = floor( sum / (double) w );
+        string_to_hash =  string_to_hash + to_string(sum);
+    }
 
-                x = (double)qdata.images[query_line][i]; /* Get the first int from the file */
-                sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
+    int n = qdata.number_of_images;
+    pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
+    pos = modulo(pos,n/2);
 
-
-			}
-
-
-			sum = sum + t[h];
-            //cout << t[h] << endl;
-			sum = floor( sum / (double) w );
-			string_to_hash =  string_to_hash + to_string(sum);
-
-		}
-
-        int n = qdata.number_of_images;
-		pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
-		pos = modulo(pos,n/2);
-
-		// cout << "Pushing " << line << " to [" << amp_func << "][" << pos << "]" << endl; 
-
-		return pos;
-
-
+    return pos;
 }
 
-
-// For Clustering 
+// Συνάρτηση για το hash των κεντροειδών (για Clustering)
 long long unsigned int LSHImplementation::euclidian_hash_centroid(unsigned char* query_line, int amp_func, int k, fileData& data,  vector<double>& t) {
     string string_to_hash;
     long long int sum;
@@ -171,72 +137,47 @@ long long unsigned int LSHImplementation::euclidian_hash_centroid(unsigned char*
     return pos;
 }
 
-
-
-// long long int calcute_euclidian_distance(int input_line, int query_line, fileData& fdata, fileData& qdata); /* Returns the euclidian distance between two vectors */
-
+// Συνάρτηση για υπολογισμό της ευκλείδιας απόστασης
 long long int LSHImplementation::calcute_euclidian_distance(int input_line, int query_line, fileData& fdata, fileData& qdata){
-
-	/* Now lets calcute the inner product of the two vectors and the norm of each one*/
-
-	double x,y;
-
-	long long int dist=0;
-
-	for(int i=0;i<fdata.image_size;i++){
-
-		x = (double)fdata.images[input_line][i];
+    double x, y;
+    long long int dist = 0;
+    for(int i=0; i < fdata.image_size; i++){
+        x = (double)fdata.images[input_line][i];
         y = (double)qdata.images[query_line][i];
-		dist = dist + (x-y)*(x-y);
-		// cout << "x: " << x << " y: " << y << "dist: " << dist << endl;
-
-	}
-
-	// cout << "DIST: " << dist << endl;
-
-	return dist;
+        dist = dist + (x - y) * (x - y);
+    }
+    return dist;
 }
 
-
+// Συνάρτηση για τον τοποθέτηση ενός διανύσματος σε όλους τους πίνακες hash
 void LSHImplementation::Euclidian_put_hash(int index, int L, int k, fileData& data, const std::vector<double>& t){
+    int n = data.number_of_images;
+    int dim = data.image_size;
+    string string_to_hash;
+    long long int sum;
+    double x;
+    string str;
+    long long unsigned int pos;
 
-        int n = data.number_of_images;
-        int dim = data.image_size;
-        string string_to_hash;
-        long long int sum;
-        double x;
-        string str;
-        long long unsigned int pos;
-
-        for (int amp_func = 0; amp_func < L; amp_func++){
-            string_to_hash = "";
-
-
-            for(int h = 0 ; h < k ; h++ ){ /* We have to hash each vector with each Hash Function in the amp_func Amplified Function */
-                sum = 0;
-
-                for(int i=0; i < dim; i++){
-                    x = (double) data.images[index][i];
-                    sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
-                }
-
-                sum = sum + t[h];
-			    sum = floor( sum / (double) w );
-			    string_to_hash.append(to_string(sum));
-
+    for (int amp_func = 0; amp_func < L; amp_func++){
+        string_to_hash = "";
+        for(int h = 0 ; h < k ; h++ ){ 
+            sum = 0;
+            for(int i=0; i < dim; i++){
+                x = (double) data.images[index][i];
+                sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
             }
-
-            
-
-            pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
-		    pos = modulo(pos,n/2);
-		    //cout << "Pushing " << index << " to [" << amp_func << "][" << pos << "]" << endl; 
-		    Euclidian_Hash_Tables[amp_func][pos].push_back(index);
-
-
+            sum = sum + t[h];
+            sum = floor( sum / (double) w );
+            string_to_hash.append(to_string(sum));
         }
-} /* Puts a vector to all of the hash tables */
+        pos = modulo(hash<string>{}(string_to_hash), BIG_INT);
+        pos = modulo(pos,n/2);
+        Euclidian_Hash_Tables[amp_func][pos].push_back(index);
+    }
+}
 
+// Συνάρτηση για τον τοποθέτηση ενός κεντροειδούς σε όλους τους πίνακες hash
 void LSHImplementation::insertCentroidIntoLSH(int index, int number_centroids, int L, int k, const std::vector<double>& t, const std::vector<unsigned char*>& centroid) {
     int n = number_centroids;
     int dim = centroid.size();
@@ -252,11 +193,10 @@ void LSHImplementation::insertCentroidIntoLSH(int index, int number_centroids, i
         for (int h = 0; h < k; h++) {
             sum = 0;
 
-        for (int i = 0; i < dim; i++) {
-            x = (double)centroid[index][i]; // Use the centroid data at the given 'index'
-            sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
-        }
-
+            for (int i = 0; i < dim; i++) {
+                x = (double)centroid[index][i];
+                sum += x * v[Euclidian_Amplified_Functions[amp_func][h]][i];
+            }
 
             sum = sum + t[h];
             sum = floor(sum / (double)w);
@@ -267,14 +207,9 @@ void LSHImplementation::insertCentroidIntoLSH(int index, int number_centroids, i
         pos = modulo(pos, n / 2);
         Euclidian_Hash_Tables[amp_func][pos].push_back(index);
     }
-
-
 }
 
-
-
-
-
+// Συνάρτηση για ανάγνωση εικόνων MNIST
 unsigned char** LSHImplementation::read_mnist_images(std::ifstream& file, fileData& data) {
     auto reverseInt = [](int i) {
         unsigned char c1, c2, c3, c4;
@@ -326,20 +261,16 @@ unsigned char** LSHImplementation::read_mnist_images(std::ifstream& file, fileDa
     }
 }
 
+// Συνάρτηση για ανάγνωση γραμμής εικόνας από τα δεδομένα
 unsigned char* LSHImplementation::getImageLine(const fileData& data, int imageIndex) {
     if (imageIndex >= 0 && imageIndex < data.number_of_images) {
         return data.images[imageIndex];
     } else {
-
         return nullptr;
     }
 }
 
-
-//////////////////////////////////////////
-
-
-// Function to initialize vectors and hash functions
+// Συνάρτηση για την αρχικοποίηση των διανυσμάτων και των συναρτήσεων hash
 void LSHImplementation::initializeVectors(int k, int dim) {
     v.resize(k, vector<double>(dim));
 
@@ -354,7 +285,7 @@ void LSHImplementation::initializeVectors(int k, int dim) {
     }
 }
 
-// Function to initialize Amplified Hash Functions
+// Συνάρτηση για την αρχικοποίηση των αναπαραστάσεων των hash
 void LSHImplementation::initializeAmplifiedFunctions(int L, int k) {
     Euclidian_Amplified_Functions.resize(L, vector<int>(k));
 
@@ -375,7 +306,7 @@ void LSHImplementation::initializeAmplifiedFunctions(int L, int k) {
     }
 }
 
-// Function to initialize t for each hash function
+// Συνάρτηση για την αρχικοποίηση του t για κάθε συνάρτηση
 void LSHImplementation::initializeT(int k, int w) {
     t.clear();
     uniform_real_distribution<float> distribution(0.0, static_cast<float>(w));
@@ -388,6 +319,8 @@ void LSHImplementation::initializeT(int k, int w) {
     }
 }
 
+
+// Καθαρίζουμε τους πίνακες hash από τα 0
 void LSHImplementation::cleanupHashTables(int L, fileData& data, int n) {
     int max = n / 2;
 
@@ -404,16 +337,10 @@ void LSHImplementation::cleanupHashTables(int L, fileData& data, int n) {
 }
 
 void LSHImplementation::initializeLSH(int L, int n, int k, int dim, int w) {
-    // Initialize the Hash Tables
+
     Euclidian_Hash_Tables.resize(L, vector<vector<long long unsigned int>>(n / 2, vector<long long unsigned int>(1000)));
-
-    // Initialize vectors and hash functions
     initializeVectors(k, dim);
-
-    // Initialize Amplified Hash Functions
     initializeAmplifiedFunctions(L, k);
-
-    // Initialize t for each hash function
     initializeT(k, w);
 }
 

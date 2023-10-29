@@ -22,7 +22,7 @@ struct fileData {
 class LSHImplementation {
     public: 
 
-        // Define your global variables and data structures
+
         ifstream file;
         ifstream qFile;
         static vector<vector<vector<long long unsigned int>>> Euclidian_Hash_Tables;
@@ -35,20 +35,19 @@ class LSHImplementation {
 
         const std::vector<std::vector<std::vector<long long unsigned int>>>& getEuclidianHashTables() const;
         const std::vector<std::vector<int>>& getEuclidianAmplifiedFunctions();
-        // Getter function for amp_func
         int getAmplifiedFunction(int j, int k);
 
-        // create a constructor for the class
+
         LSHImplementation(int L, int k, int w);
         
-        // return L, k, w
+
         int getL();
         int getK();
         int getW();
 
 
 
-        // Function declarations
+        // A
         double normal_distribution_generator();
         long long int modulo(long long int a, long long int b);
         long long unsigned int euclidian_hash_query(int query_line, int amp_func, int k, fileData& qdata, const vector<double>& t);
@@ -66,7 +65,7 @@ class LSHImplementation {
         void Euclidian_Full_Search_Range(int query_line, fileData& data, fileData& qdata, double radius);
 
 
-        // Function declarations for the second part of the project
+        // B
         long long unsigned int euclidian_hash_centroid(unsigned char* query_line, int amp_func, int k, fileData& data, vector<double>& t);
         int FindNearestNeighborCentroid(unsigned char* query_line, int L, int k, fileData& data, vector<double>& t);
         void insertCentroidIntoLSH(int index, int number_centroids, int L, int k, const std::vector<double>& t, const std::vector<unsigned char*>& centroid);

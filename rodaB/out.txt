@@ -1,0 +1,700 @@
+Query 0
+NN(lsh): Item 48806
+Nearest Neighbour: Item 53843
+distanceTrue: 457766
+tLSH: 0.000476119
+tTrue: 0.39857
+-------------------------------------
+Query 1
+NN(lsh): Item 55093
+Nearest Neighbour: Item 28882
+distanceTrue: 1352410
+tLSH: 0.000234621
+tTrue: 0.281063
+-------------------------------------
+Query 2
+NN(lsh): Item 58741
+Nearest Neighbour: Item 58741
+distanceTrue: 103467
+tLSH: 0.000240835
+tTrue: 0.391588
+-------------------------------------
+Query 3
+NN(lsh): Item 15984
+Nearest Neighbour: Item 29044
+distanceTrue: 1492264
+tLSH: 0.000347262
+tTrue: 0.361746
+-------------------------------------
+Query 4
+NN(lsh): Item 3783
+Nearest Neighbour: Item 52920
+distanceTrue: 1193632
+tLSH: 0.000218287
+tTrue: 0.34068
+-------------------------------------
+Query 5
+NN(lsh): Item 30809
+Nearest Neighbour: Item 30809
+distanceTrue: 88878
+tLSH: 0.000293819
+tTrue: 0.320972
+-------------------------------------
+Query 6
+NN(lsh): Item 57123
+Nearest Neighbour: Item 18279
+distanceTrue: 1697055
+tLSH: 0.000201207
+tTrue: 0.323578
+-------------------------------------
+Query 7
+NN(lsh): Item 38183
+Nearest Neighbour: Item 41982
+distanceTrue: 1663323
+tLSH: 0.00034125
+tTrue: 0.355747
+-------------------------------------
+Query 8
+NN(lsh): Item 5650
+Nearest Neighbour: Item 52896
+distanceTrue: 3011418
+tLSH: 0.000466796
+tTrue: 0.375575
+-------------------------------------
+Query 9
+NN(lsh): Item 40557
+Nearest Neighbour: Item 5044
+distanceTrue: 983266
+tLSH: 0.000228777
+tTrue: 0.314035
+-------------------------------------
+Query 10
+NN(lsh): Item 8113
+Nearest Neighbour: Item 49939
+distanceTrue: 1211951
+tLSH: 0.000185278
+tTrue: 0.352981
+-------------------------------------
+Query 11
+NN(lsh): Item 13404
+Nearest Neighbour: Item 36036
+distanceTrue: 2144412
+tLSH: 0.000196517
+tTrue: 0.34831
+-------------------------------------
+Query 12
+NN(lsh): Item 45343
+Nearest Neighbour: Item 55477
+distanceTrue: 686066
+tLSH: 0.000421565
+tTrue: 0.378185
+-------------------------------------
+Query 13
+NN(lsh): Item 3514
+Nearest Neighbour: Item 32899
+distanceTrue: 803849
+tLSH: 0.000317526
+tTrue: 0.354115
+-------------------------------------
+Query 14
+NN(lsh): Item 56237
+Nearest Neighbour: Item 39152
+distanceTrue: 385992
+tLSH: 0.000467643
+tTrue: 0.334624
+-------------------------------------
+Query 15
+NN(lsh): Item 49728
+Nearest Neighbour: Item 18418
+distanceTrue: 2006376
+tLSH: 0.000172964
+tTrue: 0.313328
+-------------------------------------
+Query 16
+NN(lsh): Item 18916
+Nearest Neighbour: Item 25215
+distanceTrue: 776229
+tLSH: 0.000252725
+tTrue: 0.341444
+-------------------------------------
+Query 17
+NN(lsh): Item 43774
+Nearest Neighbour: Item 53483
+distanceTrue: 654878
+tLSH: 0.000206075
+tTrue: 0.326681
+-------------------------------------
+Query 18
+NN(lsh): Item 52394
+Nearest Neighbour: Item 29246
+distanceTrue: 2671253
+tLSH: 0.000243236
+tTrue: 0.345371
+-------------------------------------
+Query 19
+NN(lsh): Item 46298
+Nearest Neighbour: Item 55328
+distanceTrue: 831994
+tLSH: 0.00017406
+tTrue: 0.355415
+-------------------------------------
+Query 20
+NN(lsh): Item 42646
+Nearest Neighbour: Item 22855
+distanceTrue: 933491
+tLSH: 0.000189495
+tTrue: 0.31935
+-------------------------------------
+Query 21
+NN(lsh): Item 45225
+Nearest Neighbour: Item 18430
+distanceTrue: 905671
+tLSH: 0.000390464
+tTrue: 0.345538
+-------------------------------------
+Query 22
+NN(lsh): Item 45324
+Nearest Neighbour: Item 11226
+distanceTrue: 1467678
+tLSH: 0.000293602
+tTrue: 0.342418
+-------------------------------------
+Query 23
+NN(lsh): Item 6907
+Nearest Neighbour: Item 36015
+distanceTrue: 1470899
+tLSH: 0.00037393
+tTrue: 0.345415
+-------------------------------------
+Query 24
+NN(lsh): Item 580
+Nearest Neighbour: Item 31322
+distanceTrue: 1242016
+tLSH: 0.000402553
+tTrue: 0.321804
+-------------------------------------
+Query 25
+NN(lsh): Item 39839
+Nearest Neighbour: Item 28203
+distanceTrue: 1927492
+tLSH: 0.000245227
+tTrue: 0.315638
+-------------------------------------
+Query 26
+NN(lsh): Item 40446
+Nearest Neighbour: Item 37537
+distanceTrue: 1093611
+tLSH: 0.000356012
+tTrue: 0.332971
+-------------------------------------
+Query 27
+NN(lsh): Item 55852
+Nearest Neighbour: Item 41686
+distanceTrue: 1081355
+tLSH: 0.000651309
+tTrue: 0.334156
+-------------------------------------
+Query 28
+NN(lsh): Item 23119
+Nearest Neighbour: Item 56318
+distanceTrue: 1330614
+tLSH: 0.000206552
+tTrue: 0.308707
+-------------------------------------
+Query 29
+NN(lsh): Item 52768
+Nearest Neighbour: Item 50023
+distanceTrue: 239458
+tLSH: 0.000216145
+tTrue: 0.353645
+-------------------------------------
+Query 30
+NN(lsh): Item 20630
+Nearest Neighbour: Item 8230
+distanceTrue: 1481397
+tLSH: 0.000204788
+tTrue: 0.384291
+-------------------------------------
+Query 31
+NN(lsh): Item 26746
+Nearest Neighbour: Item 26968
+distanceTrue: 186141
+tLSH: 0.000430993
+tTrue: 0.337651
+-------------------------------------
+Query 32
+NN(lsh): Item 14704
+Nearest Neighbour: Item 51142
+distanceTrue: 647215
+tLSH: 0.000492599
+tTrue: 0.381315
+-------------------------------------
+Query 33
+NN(lsh): Item 28272
+Nearest Neighbour: Item 16572
+distanceTrue: 1916317
+tLSH: 0.000258574
+tTrue: 0.425952
+-------------------------------------
+Query 34
+NN(lsh): Item 12464
+Nearest Neighbour: Item 19153
+distanceTrue: 646954
+tLSH: 0.000235427
+tTrue: 0.370637
+-------------------------------------
+Query 35
+NN(lsh): Item 25647
+Nearest Neighbour: Item 6605
+distanceTrue: 2343931
+tLSH: 0.00024892
+tTrue: 0.431875
+-------------------------------------
+Query 36
+NN(lsh): Item 45173
+Nearest Neighbour: Item 34298
+distanceTrue: 1556548
+tLSH: 0.000230297
+tTrue: 0.34351
+-------------------------------------
+Query 37
+NN(lsh): Item 53843
+Nearest Neighbour: Item 25600
+distanceTrue: 103639
+tLSH: 0.0003931
+tTrue: 0.400331
+-------------------------------------
+Query 38
+NN(lsh): Item 18406
+Nearest Neighbour: Item 49614
+distanceTrue: 1638758
+tLSH: 0.000603017
+tTrue: 0.369865
+-------------------------------------
+Query 39
+NN(lsh): Item 9288
+Nearest Neighbour: Item 14169
+distanceTrue: 230556
+tLSH: 0.000296628
+tTrue: 0.38665
+-------------------------------------
+Query 40
+NN(lsh): Item 26594
+Nearest Neighbour: Item 26268
+distanceTrue: 193399
+tLSH: 0.000682613
+tTrue: 0.328755
+-------------------------------------
+Query 41
+NN(lsh): Item 18609
+Nearest Neighbour: Item 2666
+distanceTrue: 1063258
+tLSH: 0.000444448
+tTrue: 0.340863
+-------------------------------------
+Query 42
+NN(lsh): Item 54275
+Nearest Neighbour: Item 35590
+distanceTrue: 1083019
+tLSH: 0.000401475
+tTrue: 0.326636
+-------------------------------------
+Query 43
+NN(lsh): Item 22419
+Nearest Neighbour: Item 30503
+distanceTrue: 2251174
+tLSH: 0.000469169
+tTrue: 0.309961
+-------------------------------------
+Query 44
+NN(lsh): Item 30621
+Nearest Neighbour: Item 18325
+distanceTrue: 1280845
+tLSH: 0.000222128
+tTrue: 0.297398
+-------------------------------------
+Query 45
+NN(lsh): Item 4992
+Nearest Neighbour: Item 22508
+distanceTrue: 1597149
+tLSH: 0.00037066
+tTrue: 0.312609
+-------------------------------------
+Query 46
+NN(lsh): Item 9906
+Nearest Neighbour: Item 44418
+distanceTrue: 404242
+tLSH: 0.000202066
+tTrue: 0.284329
+-------------------------------------
+Query 47
+NN(lsh): Item 37455
+Nearest Neighbour: Item 3166
+distanceTrue: 1721704
+tLSH: 0.00127385
+tTrue: 0.310141
+-------------------------------------
+Query 48
+NN(lsh): Item 24053
+Nearest Neighbour: Item 7526
+distanceTrue: 1618673
+tLSH: 0.000210204
+tTrue: 0.346069
+-------------------------------------
+Query 49
+NN(lsh): Item 34132
+Nearest Neighbour: Item 40970
+distanceTrue: 1111803
+tLSH: 0.000284141
+tTrue: 0.327829
+-------------------------------------
+Query 50
+NN(lsh): Item 11669
+Nearest Neighbour: Item 53581
+distanceTrue: 909458
+tLSH: 0.000194886
+tTrue: 0.383717
+-------------------------------------
+Query 51
+NN(lsh): Item 30124
+Nearest Neighbour: Item 15090
+distanceTrue: 1652809
+tLSH: 0.000283227
+tTrue: 0.369203
+-------------------------------------
+Query 52
+NN(lsh): Item 6859
+Nearest Neighbour: Item 27593
+distanceTrue: 1488218
+tLSH: 0.000286994
+tTrue: 0.342726
+-------------------------------------
+Query 53
+NN(lsh): Item 5950
+Nearest Neighbour: Item 21016
+distanceTrue: 1365549
+tLSH: 0.000163095
+tTrue: 0.338332
+-------------------------------------
+Query 54
+NN(lsh): Item 21878
+Nearest Neighbour: Item 49838
+distanceTrue: 1544895
+tLSH: 0.000941271
+tTrue: 0.350436
+-------------------------------------
+Query 55
+NN(lsh): Item 45126
+Nearest Neighbour: Item 45589
+distanceTrue: 534263
+tLSH: 0.000364737
+tTrue: 0.323565
+-------------------------------------
+Query 56
+NN(lsh): Item 30378
+Nearest Neighbour: Item 21935
+distanceTrue: 1451266
+tLSH: 0.000348587
+tTrue: 0.325204
+-------------------------------------
+Query 57
+NN(lsh): Item 55601
+Nearest Neighbour: Item 19510
+distanceTrue: 152548
+tLSH: 0.00027595
+tTrue: 0.326945
+-------------------------------------
+Query 58
+NN(lsh): Item 17207
+Nearest Neighbour: Item 11527
+distanceTrue: 812373
+tLSH: 0.000158678
+tTrue: 0.30881
+-------------------------------------
+Query 59
+NN(lsh): Item 185
+Nearest Neighbour: Item 6026
+distanceTrue: 1055489
+tLSH: 0.000215002
+tTrue: 0.329664
+-------------------------------------
+Query 60
+NN(lsh): Item 11572
+Nearest Neighbour: Item 54940
+distanceTrue: 1489000
+tLSH: 0.000397678
+tTrue: 0.360024
+-------------------------------------
+Query 61
+NN(lsh): Item 19183
+Nearest Neighbour: Item 8067
+distanceTrue: 2746668
+tLSH: 0.00027877
+tTrue: 0.308361
+-------------------------------------
+Query 62
+NN(lsh): Item 31318
+Nearest Neighbour: Item 24916
+distanceTrue: 1087641
+tLSH: 0.000345724
+tTrue: 0.331179
+-------------------------------------
+Query 63
+NN(lsh): Item 26688
+Nearest Neighbour: Item 5396
+distanceTrue: 1760494
+tLSH: 0.000411785
+tTrue: 0.294983
+-------------------------------------
+Query 64
+NN(lsh): Item 9821
+Nearest Neighbour: Item 11180
+distanceTrue: 2149751
+tLSH: 0.000195705
+tTrue: 0.328819
+-------------------------------------
+Query 65
+NN(lsh): Item 39192
+Nearest Neighbour: Item 2050
+distanceTrue: 1060561
+tLSH: 0.000219477
+tTrue: 0.324304
+-------------------------------------
+Query 66
+NN(lsh): Item 14042
+Nearest Neighbour: Item 35861
+distanceTrue: 1574775
+tLSH: 0.00045119
+tTrue: 0.31279
+-------------------------------------
+Query 67
+NN(lsh): Item 18744
+Nearest Neighbour: Item 44528
+distanceTrue: 1436394
+tLSH: 0.000194445
+tTrue: 0.293707
+-------------------------------------
+Query 68
+NN(lsh): Item 22610
+Nearest Neighbour: Item 57680
+distanceTrue: 917789
+tLSH: 0.000217447
+tTrue: 0.308142
+-------------------------------------
+Query 69
+NN(lsh): Item 29716
+Nearest Neighbour: Item 15492
+distanceTrue: 763084
+tLSH: 0.000173153
+tTrue: 0.378588
+-------------------------------------
+Query 70
+NN(lsh): Item 442
+Nearest Neighbour: Item 36003
+distanceTrue: 1052387
+tLSH: 0.000538293
+tTrue: 0.354537
+-------------------------------------
+Query 71
+NN(lsh): Item 48384
+Nearest Neighbour: Item 429
+distanceTrue: 1027607
+tLSH: 0.000216642
+tTrue: 0.307009
+-------------------------------------
+Query 72
+NN(lsh): Item 21092
+Nearest Neighbour: Item 41516
+distanceTrue: 2378733
+tLSH: 0.000341285
+tTrue: 0.483074
+-------------------------------------
+Query 73
+NN(lsh): Item 58371
+Nearest Neighbour: Item 51145
+distanceTrue: 1261526
+tLSH: 0.000319267
+tTrue: 0.424957
+-------------------------------------
+Query 74
+NN(lsh): Item 40773
+Nearest Neighbour: Item 34261
+distanceTrue: 191191
+tLSH: 0.000166024
+tTrue: 0.320238
+-------------------------------------
+Query 75
+NN(lsh): Item 46739
+Nearest Neighbour: Item 56932
+distanceTrue: 965993
+tLSH: 0.000213833
+tTrue: 0.29972
+-------------------------------------
+Query 76
+NN(lsh): Item 45961
+Nearest Neighbour: Item 21018
+distanceTrue: 868915
+tLSH: 0.000171808
+tTrue: 0.331531
+-------------------------------------
+Query 77
+NN(lsh): Item 15531
+Nearest Neighbour: Item 50756
+distanceTrue: 1866386
+tLSH: 0.000288706
+tTrue: 0.32393
+-------------------------------------
+Query 78
+NN(lsh): Item 4345
+Nearest Neighbour: Item 42696
+distanceTrue: 963991
+tLSH: 0.000223939
+tTrue: 0.336245
+-------------------------------------
+Query 79
+NN(lsh): Item 23639
+Nearest Neighbour: Item 56167
+distanceTrue: 920231
+tLSH: 0.000218223
+tTrue: 0.427025
+-------------------------------------
+Query 80
+NN(lsh): Item 57074
+Nearest Neighbour: Item 54477
+distanceTrue: 1154713
+tLSH: 0.00038662
+tTrue: 0.307242
+-------------------------------------
+Query 81
+NN(lsh): Item 52253
+Nearest Neighbour: Item 1830
+distanceTrue: 1169968
+tLSH: 0.0002751
+tTrue: 0.336739
+-------------------------------------
+Query 82
+NN(lsh): Item 37258
+Nearest Neighbour: Item 4371
+distanceTrue: 1567646
+tLSH: 0.000224426
+tTrue: 0.38966
+-------------------------------------
+Query 83
+NN(lsh): Item 19622
+Nearest Neighbour: Item 26091
+distanceTrue: 734764
+tLSH: 0.000435171
+tTrue: 0.360013
+-------------------------------------
+Query 84
+NN(lsh): Item 42698
+Nearest Neighbour: Item 34376
+distanceTrue: 2126684
+tLSH: 0.000272984
+tTrue: 0.332719
+-------------------------------------
+Query 85
+NN(lsh): Item 26806
+Nearest Neighbour: Item 2256
+distanceTrue: 1723683
+tLSH: 0.000580537
+tTrue: 0.351603
+-------------------------------------
+Query 86
+NN(lsh): Item 59056
+Nearest Neighbour: Item 43645
+distanceTrue: 601360
+tLSH: 0.000235587
+tTrue: 0.522565
+-------------------------------------
+Query 87
+NN(lsh): Item 3542
+Nearest Neighbour: Item 34536
+distanceTrue: 2190431
+tLSH: 0.000482712
+tTrue: 0.477486
+-------------------------------------
+Query 88
+NN(lsh): Item 27390
+Nearest Neighbour: Item 4430
+distanceTrue: 1105991
+tLSH: 0.000235293
+tTrue: 0.397383
+-------------------------------------
+Query 89
+NN(lsh): Item 13453
+Nearest Neighbour: Item 25112
+distanceTrue: 347254
+tLSH: 0.000296369
+tTrue: 0.305701
+-------------------------------------
+Query 90
+NN(lsh): Item 29851
+Nearest Neighbour: Item 59119
+distanceTrue: 1169568
+tLSH: 0.000192639
+tTrue: 0.442399
+-------------------------------------
+Query 91
+NN(lsh): Item 25611
+Nearest Neighbour: Item 51624
+distanceTrue: 824609
+tLSH: 0.000378509
+tTrue: 0.324653
+-------------------------------------
+Query 92
+NN(lsh): Item 7310
+Nearest Neighbour: Item 27731
+distanceTrue: 1092539
+tLSH: 0.000294964
+tTrue: 0.374492
+-------------------------------------
+Query 93
+NN(lsh): Item 19605
+Nearest Neighbour: Item 37163
+distanceTrue: 1376526
+tLSH: 0.000220177
+tTrue: 0.325048
+-------------------------------------
+Query 94
+NN(lsh): Item 48521
+Nearest Neighbour: Item 59364
+distanceTrue: 503042
+tLSH: 0.000219961
+tTrue: 0.319344
+-------------------------------------
+Query 95
+NN(lsh): Item 21961
+Nearest Neighbour: Item 2069
+distanceTrue: 2733387
+tLSH: 0.000165159
+tTrue: 0.384622
+-------------------------------------
+Query 96
+NN(lsh): Item 26078
+Nearest Neighbour: Item 40352
+distanceTrue: 497957
+tLSH: 0.000196509
+tTrue: 0.43447
+-------------------------------------
+Query 97
+NN(lsh): Item 47264
+Nearest Neighbour: Item 50992
+distanceTrue: 1596839
+tLSH: 0.000547866
+tTrue: 0.383178
+-------------------------------------
+Query 98
+NN(lsh): Item 3098
+Nearest Neighbour: Item 52504
+distanceTrue: 1259018
+tLSH: 0.000323605
+tTrue: 0.345651
+-------------------------------------
+Query 99
+NN(lsh): Item 40460
+Nearest Neighbour: Item 23447
+distanceTrue: 981510
+tLSH: 0.00063275
+tTrue: 0.433424
+-------------------------------------

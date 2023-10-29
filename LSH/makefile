@@ -1,5 +1,5 @@
 CC = g++
-modules = LSHImplementation.cpp
+modules = LSHImplementation.cpp 
 args = -o
 
 mnist:
