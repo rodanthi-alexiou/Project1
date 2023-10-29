@@ -33,12 +33,86 @@ typedef unsigned int uint;
 
 ifstream file; /* Input File */
 
+// Define a struct for command line arguments
+struct CommandLineArguments {
+    std::string inputFile;
+    std::string outputFile;
+    std::string method;  // Method: Classic OR LSH OR Hypercube
+};
 
-int main() {
+// Function to parse and use command line arguments
+CommandLineArguments useArguments(int argc, char* argv[]) {
+    CommandLineArguments args;
+    int cur_arg = 1;
 
-    int algo = 1; // 0 for LSH, 1 for Lloyd's
+    if (argc < 7) {
+        std::cout << "Usage: $./cluster -i <input file> -o <output file> -m <method: Classic OR LSH OR Hypercube>" << std::endl;
+        exit(1);
+    }
 
-    std::ifstream file("train-images.idx3-ubyte", std::ios::binary);
+    while (cur_arg < argc) {
+        if (strcmp(argv[cur_arg], "-i") == 0) {
+            if (cur_arg == (argc - 1) || argv[cur_arg + 1][0] == '-') {
+                std::cout << "Please specify an input file after -i." << std::endl;
+                exit(1);
+            } else {
+                args.inputFile = argv[cur_arg + 1];
+                cur_arg += 2;
+            }
+        } else if (strcmp(argv[cur_arg], "-o") == 0) {
+            if (cur_arg == (argc - 1) || argv[cur_arg + 1][0] == '-') {
+                std::cout << "Please specify an output file after -o." << std::endl;
+                exit(1);
+            } else {
+                args.outputFile = argv[cur_arg + 1];
+                cur_arg += 2;
+            }
+        } else if (strcmp(argv[cur_arg], "-m") == 0) {
+            if (cur_arg == (argc - 1) || argv[cur_arg + 1][0] == '-') {
+                std::cout << "Please specify the method (Classic, LSH, or Hypercube) after -m." << std::endl;
+                exit(1);
+            } else {
+                args.method = argv[cur_arg + 1];
+                cur_arg += 2;
+            }
+        } else {
+            std::cout << "Unknown argument: " << argv[cur_arg] << std::endl;
+            exit(1);
+        }
+    }
+
+    // Check if the method is one of the allowed values
+    if (args.method != "Classic" && args.method != "LSH" && args.method != "Hypercube") {
+        std::cout << "Invalid method. Please specify Classic, LSH, or Hypercube after -m." << std::endl;
+        exit(1);
+    }
+
+    return args;
+}
+
+
+int main(int argc, char *argv[]) {
+
+
+
+    CommandLineArguments args = useArguments(argc, argv);
+    int algo;
+
+    if (args.method == "LSH") {
+        algo = 0; // Use LSH algorithm
+    }
+    else if(args.method == "Classic"){
+        algo = 1; // Use Classic algorithm
+    }
+    else if(args.method == "Hypercube"){
+        algo = 2; // Use Hypercube algorithm
+    }
+    else{
+        cout << "Invalid method. Please specify Classic, LSH, or Hypercube after -m." << endl;
+        exit(1);
+    }
+
+    std::ifstream file(args.inputFile, std::ios::binary);
     
     fileData data = {
         0,0,0,0,0,nullptr  

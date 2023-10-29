@@ -433,7 +433,7 @@ void LSHImplementation::Euclidian_Full_Search_Range(int query_line, fileData& da
 	cout << "R-Near Neighbours:" << endl;
 	long long unsigned int dist;
 
-	for(long long unsigned int i=0;i< n;i++){
+	for(long long unsigned int i=0;i< 5;i++){
 
 		dist = LSHImplementation::calcute_euclidian_distance(i,query_line, data, qdata);
 

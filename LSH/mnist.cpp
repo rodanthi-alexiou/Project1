@@ -228,6 +228,10 @@ int main(int argc, char *argv[]) {
         outFile << "tTrue: " << elapsed2.count() << endl;
 
 
+        outFile << "R-near neighbors:" << std::endl;
+        lsh.Euclidian_Full_Search_Range(query_line, data, qData, radius);
+
+
         cout << "-------------------------------------" << endl;
 
     }
